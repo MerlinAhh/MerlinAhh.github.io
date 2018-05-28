@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Get了没 | Web development
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="Get了没 | Web development" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">GETZOO5</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/JavaScript/">JavaScript</a></li><li><a class="category-link" href="/categories/微信小程序/">微信小程序</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="http://cv.getzoo5.top/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Getzoo5" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/z-img/showToast.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >小程序_Toast 弹窗提示的几种设置方法</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <hr>
+<p>小程序内置 Toast 组件</p>
+<pre><code>// 1 
+wx.showToast({
+    title: &apos;nihao&apos;,         // 定义弹窗提示文本
+    icon: &apos;succes&apos;,           // 定义弹窗图标显示样式 // succes loading    
+    duration: 10000         // 提示延迟
+})
+// 2 
+wx.showToast({              // 定义弹窗显示
+    title: &apos;加载中&apos;, 
+    icon: &apos;loading&apos;, 
+    duration: 10000         // 提示延迟
+}) 
+setTimeout(function(){ 
+    wx.hideToast()          // 定义弹窗隐藏
+},2000)
+</code></pre><p>自定义 toast</p>
+<p>  <strong>1. toast 自定义 定时器设置弹窗显示时间</strong></p>
+<pre><code>// .wxml
+&lt;!--点击button触发toast--&gt;
+&lt;button type=&quot;primary&quot; bindtap=&quot;listenerButton&quot;&gt;点击显示toast&lt;/button&gt;
+&lt;!--toast消息框显示3秒，并绑定事件--&gt;
+&lt;toast hidden=&quot;{{hiddenToast}}&quot; duration=&quot;3000&quot; bindchange=&quot;toastHidden&quot; &gt;OK!&lt;/toast&gt;
+
+// .js
+Page({
+    data:{ // text:&quot;这是一个页面&quot;
+        hiddenToast: true
+    },
+    listenerButton: function() {     // 监听button点击事件
+        this.setData({
+            hiddenToast: !this.data.hiddenToast
+        })
+    },
+    toastHidden:function(){          // toast显示时间到时处理业务 
+        this.setData({
+            hiddenToast: true
+        })
+    }
+})
+</code></pre><p>  <strong>2. toast 自定义 自设置结构定义图标显示</strong></p>
+<p>代码 .wxml 部分 </p>
+<pre><code>// .wxml
+&lt;!--按钮--&gt;  
+&lt;view style=&quot;{{isShowToast?'position:fixed;':''}}&quot;&gt;  
+    &lt;view class=&quot;btn&quot; bindtap=&quot;clickBtn&quot;&gt;button&lt;/view&gt;  
+&lt;/view&gt;  
+&lt;!--mask--&gt;  
+&lt;view class=&quot;toast_mask&quot; wx:if=&quot;{{isShowToast}}&quot;&gt;&lt;/view&gt;  
+&lt;!--以下为toast显示的内容--&gt;  
+&lt;view class=&quot;toast_content_box&quot; wx:if=&quot;{{isShowToast}}&quot;&gt;  
+    &lt;view class=&quot;toast_content&quot;&gt;  
+        &lt;view class=&quot;toast_content_text&quot;&gt;  
+          &lt;view class=&quot;toast_pic&quot; style=&quot;background:url(&apos;{{toastimg}}&apos;) no-repeat; background-size: contain; background-position: center&quot;&gt;   
+          &lt;!-- 这里实现 toast_pic 的背景图 --&gt;
+          &lt;!-- &lt;image src=&apos;{{toastimg}}&apos;&gt;&lt;/image&gt; --&gt;
+          &lt;/view&gt;
+        {{toastText}}  
+        &lt;/view&gt;  
+    &lt;/view&gt;  
+&lt;/view&gt; 
+</code></pre><p>代码 wxss 部分</p>
+<pre><code>// .wxss
+Page {  
+    background: #fff;  
+}  
+/*按钮*/  
+.btn {  
+    font-size: 28rpx;  
+    padding: 15rpx 30rpx;  
+    width: 100rpx;  
+    margin: 20rpx;  
+    text-align: center;  
+    border-radius: 10rpx;  
+    border: 1px solid #000;  
+}  
+/*mask*/  
+.toast_mask {  
+    opacity: 0;  
+    width: 100%;  
+    height: 100%;  
+    overflow: hidden;  
+    position: fixed;  
+    top: 0;  
+    left: 0;  
+    z-index: 888;  
+}  
+/*toast*/  
+.toast_content_box {  
+    display: flex;  
+    width: 100%;  
+    height: 100%;  
+    justify-content: center;  
+    align-items: center;  
+    position: fixed;  
+    z-index: 999;  
+}  
+.toast_content {  
+    width: 50%;  
+    padding: 20rpx;  
+    background: rgba(0, 0, 0, 0.5);  
+    border-radius: 20rpx;  
+}  
+.toast_content_text {  
+    height: 100%;  
+    width: 100%;  
+    color: #fff;  
+    font-size: 28rpx;  
+    text-align: center;  
+} 
+.toast_pic{                         // 设置 toast_pic 
+  width: 100%;
+  height: 500rpx;
+}
+</code></pre><p>代码 js 部分</p>
+<pre><code>// .js
+Page({  
+    data: {  
+        //toast默认不显示  
+        isShowToast: false   
+    },  
+    showToast: function () {  
+        var _this = this;
+        _this.data.count = parseInt(_this.data.count) ? parseInt(_this.data.count) : 3000;  // toast时间  
+        _this.setData({                // 显示toast  
+            isShowToast: true,  
+        });
+        setTimeout(function () {       // 定时器关闭  
+            _this.setData({  
+                isShowToast: false  
+            });  
+        }, _this.data.count);  
+    },  
+    clickBtn: function () {            // 点击按钮 
+        console.log(&quot;你点击了按钮&quot;)     //设置toast时间，toast内容  
+        this.setData({  
+            count: 1500,  
+            toastText: &apos;Michael’s　Toast&apos;,
+            toastimg: &apos;/assets/wechat.png&apos;  
+        });  
+        this.showToast();  
+    }  
+})  
+</code></pre><p>最终实现小程序弹窗提示。</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.getzoo5.top/2017/1101/weApp_Toast/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://blog.getzoo5.top/2017/1101/weApp_Toast/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
