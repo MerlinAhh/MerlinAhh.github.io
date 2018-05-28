@@ -68,19 +68,16 @@
 		
 <!-- Layouts -->
 
-    <!-- Tags Cloud -->
-    
-<link rel="stylesheet" href="/css/item.css" />
-<style >
-    .row a{
-        border-bottom: none;
-    }
-    .special{
-        padding: 0;
-        padding: 2rem;
-    }
-</style>
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
 <body class="is-loading">
+    <!-- <div id="cover">
+        <div id="shang"></div>
+    </div> -->
     <!-- Wrapper 外包 s-->
     <div id="wrapper" class="fade-in">
         <!-- Intro 头部显示 s -->
@@ -148,30 +145,152 @@
 		            
 			</ul>
 </nav>
-                <div id="main">
-            <!-- Main first s-->
-            <article id="me" class="panel">
-                <header style="color: #000000">
-                    <h1>Web development.</h1>
-                    <p>Get了没 | 前端开发 && Painting</p>
-                </header>
-                <a href="http://cv.getzoo5.top/" class="jumplink pic">
-                    <span class="arrow icon fa-chevron-right"><span></span></span>
-                    <img src="/images/me.jpg" alt="" />
-                </a>
-            </article>
-            <!-- Main first e-->
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/z-img/onAccelerometer.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >小程序_微信重力感应 —— 摇一摇</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>使用该功能的页面引用下面这段代码</p>
+<pre><code>// .js
+Page({
+
+    isShow: false,
+    onShow: function () {     // 页面打开
+        var that = this;
+        this.isShow = true;
+        wx.onAccelerometerChange(function (e) {     // 微信重力
+            if(!that.isShow){
+                return
+            }
+            console.log(e.x)
+            console.log(e.y)
+            console.log(e.z)
+            if (e.x &gt; 1 &amp;&amp; e.y &gt; 1) {
+                wx.showToast({
+                    title: &apos;摇一摇成功&apos;,
+                    icon: &apos;success&apos;,
+                    duration: 2000
+                })
+            }
+        })
+    },
+    onHide: function(){     // 页面关闭
+        this.isShow = false;
+    }
+
+})
+</code></pre>
+            </div>
+
+            <!-- Post Comments 
+                %- partial('_partial/ comment') % -->
+
+            <!-- exceptional -->
+            <!-- 使用 changyan -->
+<div id="exceptional-comment">
+    <div id="exceptional-btn">赏</div>
+    <div id="exceptional">
+        <img src="/images/pay/wepay.jpg" alt=""><!-- 
+         --><img src="/images/pay/zhipay.jpg" alt="">
+         <div class="exceptional_des">
+             谢谢你的支持和打赏(๑´灬`๑)~
+         </div>
+         <div class="aa"></div>
+    </div>
+</div>
+<style>
+    #exceptional-comment{
+        background-color: #eee;
+        padding: 2pc;
+        position: relative
+    }
+    #exceptional-comment #exceptional-btn{
+        width: 6pc;
+        height: 6pc;
+        line-height: 6pc;
+        text-align: center;
+        background: #EDC471;
+        color: #808081;
+        margin:  0pc auto 1pc;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px #888;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    #exceptional{
+        width: 600px;
+        position: absolute;
+        bottom: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 3px #888;
+        padding: 5px;
+        display: none;
+    }
+    #exceptional img{
+        width: 50%
+    }
+    #exceptional .exceptional_des{
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    #exceptional .aa{
+        width: 20px;;
+        height: 20px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        background: #fff;
+        
+        box-shadow: 3px 3px 6px -1px #888
+    }
+    @media screen and (max-width: 900px) {
+
+        #exceptional{
+            width: 20pc;
+            position: absolute;
+            bottom: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 1px 15px 3px #888;
+            padding: 5px
+        }
+
+	}
+
+</style>
+<script>
+    var exceptionalbtn = document.getElementById('exceptional-btn');
+    var bodys = document.getElementsByTagName('body');
+    var body = bodys[0]
+    var i = 0
+    exceptionalbtn.onclick = function(ev){
+        var oEvent = ev || event;
+        i++
+        oEvent.cancelBubble = true;
+        if(i%2 == 1){
+            // 显示
+            document.getElementById("exceptional").style.display="block";
+        } else {
+            // 隐藏
+            document.getElementById("exceptional").style.display="none";
+        }
+    }
+    body.onclick = function(ev){
+        i = 0
+        document.getElementById("exceptional").style.display="none";
+    }
+</script>
+            
+
         </div>
-
-        <section class="special">
-                            <div class="row" style="border-bottom: none;">
-
-        <a href="/tags/RegExp/" style="font-size: 16.5px;">RegExp</a> <a href="/tags/Storage/" style="font-size: 16px;">Storage</a> <a href="/tags/function/" style="font-size: 16px;">function</a> <a href="/tags/webApp/" style="font-size: 17px;">webApp</a>
-
-                            </div>
-                    
-        </section>
-
         <!-- Copyright 版权 start -->
                 <div id="copyright">
             <ul>
@@ -184,6 +303,7 @@
         </div>
     </div>
 </body>
+
 
 
  	

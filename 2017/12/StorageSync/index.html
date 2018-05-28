@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Get了没 | Web development
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="Get了没 | Web development" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- <div id="cover">
+        <div id="shang"></div>
+    </div> -->
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">GETZOO5</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/JavaScript/">JavaScript</a></li><li><a class="category-link" href="/categories/微信小程序/">微信小程序</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="http://cv.getzoo5.top/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Getzoo5" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/z-img/StorageSync.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >小程序实现我的足迹</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="关于历史搜索"><a href="#关于历史搜索" class="headerlink" title="关于历史搜索"></a>关于历史搜索</h2><pre><code>&lt;input type=&quot;text&quot; class=&quot;search-icon&quot; placeholder=&quot;请输入要搜索的内容&quot; bindinput=&quot;searchNameInput&quot;/&gt;
+&lt;text bindtap=&quot;setSearchStorage&quot;&gt;搜索&lt;/text&gt;
+&lt;view&gt;
+  &lt;view&gt;
+    &lt;text style=&quot;float:left;&quot; bindtap=&quot;deleteHistory&quot;&gt;历史搜索&lt;/text&gt;
+    &lt;text style=&quot;float:right;&quot; bindtap=&quot;deleteHistory&quot;&gt;删除搜索历史&lt;/text&gt;
+  &lt;/view&gt;
+  &lt;view&gt;
+    &lt;view class=&quot;search-list&quot; wx:for=&quot;{{searchData}}&quot; wx:key=&quot;item&quot;&gt;
+    &lt;view&gt;{{item == null?'暂无数据':item}}&lt;/view&gt;
+    &lt;/view&gt;
+  &lt;/view&gt;
+&lt;/view&gt;
+</code></pre><p><strong>页面</strong></p>
+<p>这里有三个绑定事件</p>
+<p>bindinput=”searchNameInput”     获取用户输入的数据</p>
+<p>bindtap=”setSearchStorage”      设置本地存储</p>
+<p>bindtap=”deleteHistory”         删除历史搜索</p>
+<pre><code>// 获取用户输入框的值
+searchNameInput:function(e){
+    var that = this;
+    that.setData({
+        inputValue:e.detail.value
+    })
+}
+
+// e.detail.value 即当前输入值
+</code></pre><p>当点击搜索的时候，bindtap=”setSearchStorage”</p>
+<pre><code>// 将用户输入的内容存入本地缓存,并且将搜索数据放到首页
+setSearchStorage:function(){
+    var that = this
+    if(this.data.inputValue != &apos;&apos;){
+        // 调用API向本地缓存存入数据
+        var searchData = wx.getStorageSync(&apos;searchData&apos;) || [] 
+        searchData.push(this.data.inputValue) 
+        wx.setStorageSync(&apos;searchData&apos;, searchData)
+
+        // 读取用户搜索商品
+        var name = this.data.inputValue
+        wx.request({
+            url: &apos;www.shop.com/home/product/search&apos;,
+            data: {name:name},
+            method: &apos;GET&apos;, 
+            success: function(res){
+                that.setData({
+                    goodsList: res.data.info,
+                })
+            },
+        })
+    }
+}
+</code></pre><p><strong>流程这么走：</strong></p>
+<p>1.用户输入数据，点击搜索</p>
+<p>2.如果数据不为空，加入（设置）本地缓存</p>
+<p>3.去服务器搜索用户想要的数据，赋值给这个页面的变量</p>
+<p>4.点击删除，去除本地这个key的value</p>
+<p>这里的缓存形式的  <code>key=&gt;value</code></p>
+<p><code>var searchData = wx.getStorageSync(&#39;searchData&#39;) || []</code></p>
+<p>获取本地名字为’searchData’的缓存，如果’searchData’这个缓存不存在就相当于重新什么一个空数组，赋值给searchData这个变量</p>
+<p><code>searchData.push(this.data.inputValue)</code></p>
+<p>将用户输入的值PUSH进searchData这个变量里</p>
+<p><code>wx.setStorageSync(&#39;searchData&#39;, searchData)</code></p>
+<p>调用API接口，重新设置key = ‘searchData’的这个缓存的value等于searchData</p>
+<p>下面的wx.request是请求数据的内容，说腻了，印象够深了。</p>
+<p>这里没有绑定获取缓存的bindtap，只要获取到，然后添加到Page里面的data</p>
+<p>这里是将’searchData’这个key的缓存的value为空数组，而不是使用API提供的wx.clearStorageSync，这个会清除其他的所有缓存，而我只是想清除这一个key的缓存</p>
+
+            </div>
+
+            <!-- Post Comments 
+                %- partial('_partial/ comment') % -->
+
+            <!-- exceptional -->
+            <!-- 使用 changyan -->
+<div id="exceptional-comment">
+    <div id="exceptional-btn">赏</div>
+    <div id="exceptional">
+        <img src="/images/pay/wepay.jpg" alt=""><!-- 
+         --><img src="/images/pay/zhipay.jpg" alt="">
+         <div class="exceptional_des">
+             谢谢你的支持和打赏(๑´灬`๑)~
+         </div>
+         <div class="aa"></div>
+    </div>
+</div>
+<style>
+    #exceptional-comment{
+        background-color: #eee;
+        padding: 2pc;
+        position: relative
+    }
+    #exceptional-comment #exceptional-btn{
+        width: 6pc;
+        height: 6pc;
+        line-height: 6pc;
+        text-align: center;
+        background: #EDC471;
+        color: #808081;
+        margin:  0pc auto 1pc;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px #888;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    #exceptional{
+        width: 600px;
+        position: absolute;
+        bottom: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 3px #888;
+        padding: 5px;
+        display: none;
+    }
+    #exceptional img{
+        width: 50%
+    }
+    #exceptional .exceptional_des{
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    #exceptional .aa{
+        width: 20px;;
+        height: 20px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        background: #fff;
+        
+        box-shadow: 3px 3px 6px -1px #888
+    }
+    @media screen and (max-width: 900px) {
+
+        #exceptional{
+            width: 20pc;
+            position: absolute;
+            bottom: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 1px 15px 3px #888;
+            padding: 5px
+        }
+
+	}
+
+</style>
+<script>
+    var exceptionalbtn = document.getElementById('exceptional-btn');
+    var bodys = document.getElementsByTagName('body');
+    var body = bodys[0]
+    var i = 0
+    exceptionalbtn.onclick = function(ev){
+        var oEvent = ev || event;
+        i++
+        oEvent.cancelBubble = true;
+        if(i%2 == 1){
+            // 显示
+            document.getElementById("exceptional").style.display="block";
+        } else {
+            // 隐藏
+            document.getElementById("exceptional").style.display="none";
+        }
+    }
+    body.onclick = function(ev){
+        i = 0
+        document.getElementById("exceptional").style.display="none";
+    }
+</script>
+            
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By hexo</li>
+                <li>Design: miccall</li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>

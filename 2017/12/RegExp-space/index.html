@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Get了没 | Web development
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="Get了没 | Web development" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- <div id="cover">
+        <div id="shang"></div>
+    </div> -->
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">GETZOO5</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/JavaScript/">JavaScript</a></li><li><a class="category-link" href="/categories/微信小程序/">微信小程序</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="http://cv.getzoo5.top/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Getzoo5" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/z-img/RegExp-space.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >正则替换首尾空字符串</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="去首尾空白字符"><a href="#去首尾空白字符" class="headerlink" title="去首尾空白字符"></a>去首尾空白字符</h1><pre><code>var Message = &apos;&apos;
+
+var trim = function trim(str) {
+//将空格替换为无
+str = str.replace(/^(\s|\u00A0)+/, &apos;&apos;);
+for (var i = str.length - 1; i &gt;= 0; i--) {
+    if (/\S/.test(str.charAt(i))) {
+    str = str.substring(0, i + 1);
+    break;
+    }
+}
+console.log(str)
+Message = str
+return str;
+}
+</code></pre><h1 id="调用方法："><a href="#调用方法：" class="headerlink" title="调用方法："></a>调用方法：</h1><pre><code>//写trim方法
+function trim(str){
+    // 将空格替换为无
+    str=str.replace(/^(\s|\u00A0)+/,&apos;&apos;);    // 此处设置空格替换内容
+    for(var i=str.length-1; i&gt;=0; i--){
+        if(/\S/.test(str.charAt(i))){
+            str = str.substring(0,i+1);
+            break;
+        }
+    }
+    return str;
+}
+
+//调用
+function commithandling(){
+    var suggestion=document.getElementById(&quot;suggestion&quot;).value;
+    if(trim(suggestion)!=&quot;&quot;&amp;&amp; suggestion.length&gt;0){
+        $.post(&quot;/lord/commithandling&quot;,{&apos;idea&apos;:suggestion},function(data){
+            if(data==1){
+                alert(&quot;提交意见成功&quot;);
+                document.location.reload();
+
+            }else{
+                alert(&quot;处理意见不能为空&quot;);
+            }
+        }
+    }
+}
+</code></pre>
+            </div>
+
+            <!-- Post Comments 
+                %- partial('_partial/ comment') % -->
+
+            <!-- exceptional -->
+            <!-- 使用 changyan -->
+<div id="exceptional-comment">
+    <div id="exceptional-btn">赏</div>
+    <div id="exceptional">
+        <img src="/images/pay/wepay.jpg" alt=""><!-- 
+         --><img src="/images/pay/zhipay.jpg" alt="">
+         <div class="exceptional_des">
+             谢谢你的支持和打赏(๑´灬`๑)~
+         </div>
+         <div class="aa"></div>
+    </div>
+</div>
+<style>
+    #exceptional-comment{
+        background-color: #eee;
+        padding: 2pc;
+        position: relative
+    }
+    #exceptional-comment #exceptional-btn{
+        width: 6pc;
+        height: 6pc;
+        line-height: 6pc;
+        text-align: center;
+        background: #EDC471;
+        color: #808081;
+        margin:  0pc auto 1pc;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px #888;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    #exceptional{
+        width: 600px;
+        position: absolute;
+        bottom: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 3px #888;
+        padding: 5px;
+        display: none;
+    }
+    #exceptional img{
+        width: 50%
+    }
+    #exceptional .exceptional_des{
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    #exceptional .aa{
+        width: 20px;;
+        height: 20px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        background: #fff;
+        
+        box-shadow: 3px 3px 6px -1px #888
+    }
+    @media screen and (max-width: 900px) {
+
+        #exceptional{
+            width: 20pc;
+            position: absolute;
+            bottom: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 1px 15px 3px #888;
+            padding: 5px
+        }
+
+	}
+
+</style>
+<script>
+    var exceptionalbtn = document.getElementById('exceptional-btn');
+    var bodys = document.getElementsByTagName('body');
+    var body = bodys[0]
+    var i = 0
+    exceptionalbtn.onclick = function(ev){
+        var oEvent = ev || event;
+        i++
+        oEvent.cancelBubble = true;
+        if(i%2 == 1){
+            // 显示
+            document.getElementById("exceptional").style.display="block";
+        } else {
+            // 隐藏
+            document.getElementById("exceptional").style.display="none";
+        }
+    }
+    body.onclick = function(ev){
+        i = 0
+        document.getElementById("exceptional").style.display="none";
+    }
+</script>
+            
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By hexo</li>
+                <li>Design: miccall</li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>

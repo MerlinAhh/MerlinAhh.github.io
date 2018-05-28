@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Get了没 | Web development
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="Get了没 | Web development" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- <div id="cover">
+        <div id="shang"></div>
+    </div> -->
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">GETZOO5</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/JavaScript/">JavaScript</a></li><li><a class="category-link" href="/categories/微信小程序/">微信小程序</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="http://cv.getzoo5.top/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Getzoo5" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/z-img/showModal.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >小程序_Modal 模态框弹出提示的几种设置方法</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <hr>
+<p>小程序内置 Modal 组件</p>
+<pre><code>wx.showModal({ 
+    title: &apos;提示&apos;,                        // 定义弹窗标题
+    content: &apos;模态弹窗&apos;,                   // 定义弹窗内容文本
+    success: function (res) {
+        if (res.confirm) { 
+            console.log(&apos;用户点击确定&apos;)    // 定义弹窗确认按钮
+        }else{ 
+            console.log(&apos;用户点击取消&apos;)    // 定义弹窗取消按钮
+        } 
+    } 
+})
+</code></pre><p>自定义 Modal</p>
+<p>  <strong>1. Modal 自定义cover-view 用于嵌套在 map/canvas 组件中</strong></p>
+<pre><code>&lt;!-- &lt;map/canvas&gt; --&gt;
+&lt;cover-view class=&quot;modal&quot; wx:if=&apos;{{!modalFlag}}&apos;&gt;  
+    &lt;!-- &lt;cover-view class=&quot;modal&quot; hidden=&quot;{{modalFlag}}&quot;&gt; bug 非块级元素使用hidden不生效 使用 wx:if 可替代 注意: wx:if 与 hidden 判断相反 --&gt;
+    &lt;cover-view class=&quot;dew&quot; wx:for=&quot;{{agentList}}&quot; wx:for-item=&quot;seller&quot; wx:if=&quot;{{index < 1}}&quot; wx:key=&quot;seller.name&quot;&gt; 
+    &lt;cover-image class=&apos;dew-img&apos; src=&apos;{{seller.pimg}}&apos;&gt;&lt;/cover-image&gt;
+    &lt;cover-view class=&quot;vedw&quot;&gt;商家简述: {{seller.des}}&lt;/cover-view&gt;  
+    &lt;cover-view class=&quot;po_w&quot;&gt;  
+        &lt;cover-view class=&quot;titd&quot;&gt;{{seller.name}}&lt;/cover-view&gt;  
+        &lt;cover-view class=&quot;addd&quot;&gt;{{seller.cityName}}&lt;/cover-view&gt;  
+    &lt;/cover-view&gt;  
+    &lt;/cover-view&gt;  
+    &lt;cover-view class=&quot;button cancel&quot; bindtap=&quot;modalhide&quot; &gt;退出&lt;/cover-view&gt;
+    &lt;cover-view class=&quot;button confirm&quot; bindtap=&quot;modalshow&quot;&gt;进入商铺&lt;/cover-view&gt;
+&lt;/cover-view&gt;
+&lt;!-- &lt;/map/canvas&gt; --&gt;
+
+// .wxss
+.modal{
+    background-color: #fff;
+    padding: 40rpx;
+    box-sizing: border-box;
+    width: 80%;
+    height: auto;
+    margin: 12% 10%;
+    border-radius: 20rpx;
+    border: 1rpx #ccc solid
+}
+.dew-img{
+    width: 100%;
+    height: 100%
+}
+.vedw,.po_w{
+    line-height: 160%;
+}
+.button{
+    display: block;
+    margin: 20rpx 0 0;
+    padding: 20rpx;
+    font-size: 30rpx;
+    width: 40%;
+    color: #fff;
+    text-align: center;
+}
+.confirm{
+    float: left;
+    background-color: rgb(112, 192, 117);
+}
+.cancel{
+    float: right;
+    background-color: rgb(186, 0, 0);
+}
+
+// .js
+Page({
+    data: {
+        modalFlag: false 
+    },
+    modalshow: function (e) {
+        this.setData({
+            modalFlag: false 
+        })
+        console.log(&quot;进入商铺&quot;)
+    },
+    modalhide: function (e) {
+        this.setData({
+            modalFlag: true
+        })
+        console.log(&quot;关闭&quot;)
+    }
+})
+</code></pre><p> <strong>2. Modal 自定义 效果同内置</strong> </p>
+<pre><code>// .wxml
+&lt;modal hidden=&quot;{{hidden}}&quot; title=&quot;{{title}}&quot; confirm-text=&quot;自定义确定按钮&quot; cancel-text=&quot;自定义取消按钮&quot; bindcancel=&quot;cancel&quot; bindconfirm=&quot;confirm&quot; no-cancel=&quot;{{nocancel}}&quot;&gt;
+    {{content}}
+&lt;/modal&gt;
+
+// .js
+Page({
+    data:{
+        hidden: false,
+        nocancel: false,
+        title: &quot;这里是title&quot;,
+        content: &quot;这是对话框的内容。&quot;
+    },
+    cancel: function(){
+        this.setData({
+            hidden: true
+        });
+    },
+    confirm: function(){
+        this.setData({
+            nocancel: !this.data.nocancel     // 隐藏取消按钮
+        });    
+        console.log(&quot;clicked confirm&quot;);
+    }
+})
+</code></pre><p>几种混合弹窗效果 ( 提示+模态框+上滑菜单 )</p>
+<pre><code>// .wxml
+&lt;span style=&quot;font-family:Comic Sans MS;font-size:18px;color:#333333;&quot;&gt;
+    &lt;view class=&quot;container&quot; class=&quot;zn-uploadimg&quot;&gt;  
+        &lt;button type=&quot;primary&quot;bindtap=&quot;showok&quot;&gt;消息提示框&lt;/button&gt;   
+        &lt;button type=&quot;primary&quot;bindtap=&quot;modalcnt&quot;&gt;模态弹窗&lt;/button&gt;   
+        &lt;button type=&quot;primary&quot;bindtap=&quot;actioncnt&quot;&gt;操作菜单&lt;/button&gt;   
+    &lt;/view&gt;
+&lt;/span&gt;  
+
+// .js
+//获取应用实例    
+var app = getApp()
+Page({
+    showok: function () {
+        wx.showToast({
+        title: &apos;成功&apos;,
+        icon: &apos;success&apos;,
+        duration: 2000
+        })
+    },
+    modalcnt: function () {
+        wx.showModal({
+        title: &apos;提示&apos;,
+        content: &apos;这是一个模态弹窗&apos;,
+        success: function (res) {
+            if (res.confirm) {
+            console.log(&apos;用户点击确定&apos;)
+            } else if (res.cancel) {
+            console.log(&apos;用户点击取消&apos;)
+            }
+        }
+        })
+    },
+    actioncnt: function () {
+        wx.showActionSheet({
+        itemList: [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;],
+        success: function (res) {
+            console.log(res.tapIndex)
+        },
+        fail: function (res) {
+            console.log(res.errMsg)
+        }
+        })
+    }  
+})  
+</code></pre><p>模拟短信验证 ( modal+输入框 ) </p>
+<pre><code>// .wxml
+&lt;view class=&quot;container&quot; class=&quot;zn-uploadimg&quot;&gt;  
+    &lt;button type=&quot;primary&quot;bindtap=&quot;modalinput&quot;&gt;modal有输入框&lt;/button&gt;   
+&lt;/view&gt;  
+&lt;modal hidden=&quot;{{hiddenmodalput}}&quot; title=&quot;请输入验证码&quot; confirm-text=&quot;提交&quot; cancel-text=&quot;重置&quot; bindcancel=&quot;cancel&quot; bindconfirm=&quot;confirm&quot;&gt;  
+    &lt;input type=&apos;text&apos;placeholder=&quot;请输入内容&quot; auto-focus/&gt;  
+&lt;/modal&gt;
+
+
+// .js
+var app = getApp()    
+Page({  
+    data:{  
+        hiddenmodalput:true,  
+        //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  
+    },  
+    //点击按钮痰喘指定的hiddenmodalput弹出框  
+    modalinput:function(){  
+        this.setData({  
+        hiddenmodalput: !this.data.hiddenmodalput  
+        })  
+    },  
+    //取消按钮  
+    cancel: function(){  
+        this.setData({  
+            hiddenmodalput: true  
+        });  
+    },  
+    //确认  
+    confirm: function(){  
+        this.setData({  
+            hiddenmodalput: true  
+        })  
+    }  
+
+})  
+</code></pre><p>一般使用默认组件设置自定义样式，会带给用户更优质的操作体验，性能和美观度方面都是比较良好的~</p>
+
+            </div>
+
+            <!-- Post Comments 
+                %- partial('_partial/ comment') % -->
+
+            <!-- exceptional -->
+            <!-- 使用 changyan -->
+<div id="exceptional-comment">
+    <div id="exceptional-btn">赏</div>
+    <div id="exceptional">
+        <img src="/images/pay/wepay.jpg" alt=""><!-- 
+         --><img src="/images/pay/zhipay.jpg" alt="">
+         <div class="exceptional_des">
+             谢谢你的支持和打赏(๑´灬`๑)~
+         </div>
+         <div class="aa"></div>
+    </div>
+</div>
+<style>
+    #exceptional-comment{
+        background-color: #eee;
+        padding: 2pc;
+        position: relative
+    }
+    #exceptional-comment #exceptional-btn{
+        width: 6pc;
+        height: 6pc;
+        line-height: 6pc;
+        text-align: center;
+        background: #EDC471;
+        color: #808081;
+        margin:  0pc auto 1pc;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px #888;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    #exceptional{
+        width: 600px;
+        position: absolute;
+        bottom: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 3px #888;
+        padding: 5px;
+        display: none;
+    }
+    #exceptional img{
+        width: 50%
+    }
+    #exceptional .exceptional_des{
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    #exceptional .aa{
+        width: 20px;;
+        height: 20px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        background: #fff;
+        
+        box-shadow: 3px 3px 6px -1px #888
+    }
+    @media screen and (max-width: 900px) {
+
+        #exceptional{
+            width: 20pc;
+            position: absolute;
+            bottom: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 1px 15px 3px #888;
+            padding: 5px
+        }
+
+	}
+
+</style>
+<script>
+    var exceptionalbtn = document.getElementById('exceptional-btn');
+    var bodys = document.getElementsByTagName('body');
+    var body = bodys[0]
+    var i = 0
+    exceptionalbtn.onclick = function(ev){
+        var oEvent = ev || event;
+        i++
+        oEvent.cancelBubble = true;
+        if(i%2 == 1){
+            // 显示
+            document.getElementById("exceptional").style.display="block";
+        } else {
+            // 隐藏
+            document.getElementById("exceptional").style.display="none";
+        }
+    }
+    body.onclick = function(ev){
+        i = 0
+        document.getElementById("exceptional").style.display="none";
+    }
+</script>
+            
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By hexo</li>
+                <li>Design: miccall</li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
