@@ -1,0 +1,535 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Get了没 | Web development
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="Get了没 | Web development" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- <div id="cover">
+        <div id="shang"></div>
+    </div> -->
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">GETZOO5</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/JavaScript/">JavaScript</a></li><li><a class="category-link" href="/categories/微信小程序/">微信小程序</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="http://cv.getzoo5.top/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Getzoo5" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >PC端鼠标及键盘的禁用</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="禁用右键"><a href="#禁用右键" class="headerlink" title="禁用右键"></a>禁用右键</h2><p>1.</p>
+<pre><code>if (window.Event) 
+document.captureEvents(Event.MOUSEUP); 
+
+function nocontextmenu(){
+    event.cancelBubble = true
+    event.returnValue = false;
+    return false;
+}
+
+function norightclick(e){
+    if (window.Event) {
+        if (e.which == 2 || e.which == 3) return false;
+    } else if (event.button == 2 || event.button == 3){
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+}
+
+document.oncontextmenu = nocontextmenu;  // for IE5+
+document.onmousedown = norightclick;  //for all others
+</code></pre><p>2.</p>
+<pre><code>document.oncontextmenu = function(){
+    return false;
+} 
+</code></pre><h2 id="禁用f12"><a href="#禁用f12" class="headerlink" title="禁用f12"></a>禁用f12</h2><p>1.</p>
+<pre><code>document.oncontextmenu = function () { return false; };
+document.onkeydown = function () {
+    if (window.event &amp;&amp; window.event.keyCode == 123) {
+        event.keyCode = 0;
+        event.returnValue = false;
+        return false;
+    }
+};
+</code></pre><p>2.</p>
+<pre><code>document.onkeydown = function(){
+
+    if(window.event &amp;&amp; window.event.keyCode == 123) {
+        event.keyCode=0;
+        event.returnValue=false;
+    }
+    if(window.event &amp;&amp; window.event.keyCode == 13) {
+        window.event.keyCode = 505;
+        alert(进入);
+    }
+    if(window.event &amp;&amp; window.event.keyCode == 8) {
+        alert(str+&quot;\n请使用Del键进行字符的删除操作！&quot;);
+        window.event.returnValue=false;
+        alert(空格);
+    }
+    if(window.event &amp;&amp; window.event.keyCode == 64){
+        window.event.returnValue=false;
+        alert(哈哈)
+    }
+};
+</code></pre><h2 id="禁止选中"><a href="#禁止选中" class="headerlink" title="禁止选中"></a>禁止选中</h2><pre><code>document.onselectstart = function (event){
+    if(window.event){
+        event = window.event;
+    }try{
+        var the = event.srcElement;
+        if (!((the.tagName == &quot;INPUT&quot; &amp;&amp; the.type.toLowerCase() == &quot;text&quot;) || the.tagName == &quot;TEXTAREA&quot;)){
+            return false;
+        }
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+</code></pre><h2 id="禁止复制"><a href="#禁止复制" class="headerlink" title="禁止复制"></a>禁止复制</h2><pre><code>document.oncontextmenu = function (event){
+    if(window.event){
+        event = window.event;
+    }try{
+        var the = event.srcElement;
+        if (!((the.tagName == &quot;INPUT&quot; &amp;&amp; the.type.toLowerCase() == &quot;text&quot;) || the.tagName == &quot;TEXTAREA&quot;)){
+            return false;
+        }
+        return true;
+    }catch (e){
+        return false;
+    }
+};
+</code></pre><h2 id="禁止审查元素"><a href="#禁止审查元素" class="headerlink" title="禁止审查元素"></a>禁止审查元素</h2><pre><code>jQuery(document).keydown(function(event) {
+    var src = (event.srcElement || event.target);
+    if (src != null &amp;&amp; src.nodeType == 1) {
+        var nodeName = src.nodeName.toLowerCase();
+        if (nodeName == &quot;input&quot; || nodeName == &quot;textarea&quot;) {
+            return true;
+        }
+    }
+    if (event.keyCode == 67 &amp;&amp; event.ctrlKey == true) {
+        return false;
+    }
+    return true;
+});
+
+jQuery(document).keyup(function(event) {
+    var src = (event.srcElement || event.target);
+    if (src != null &amp;&amp; src.nodeType == 1) {
+        var nodeName = src.nodeName.toLowerCase();
+        if (nodeName == &quot;input&quot; || nodeName == &quot;textarea&quot;) {
+            return true;
+        }
+    }
+})
+</code></pre><p><strong>禁用大全</strong></p>
+<p> keycode 数字对应的按键 (键盘码)</p>
+<pre><code>keycode 8 = BackSpace BackSpace
+keycode 9 = Tab Tab
+keycode 12 = Clear
+keycode 13 = Enter
+keycode 16 = Shift_L
+keycode 17 = Control_L
+keycode 18 = Alt_L
+keycode 19 = Pause
+keycode 20 = Caps_Lock
+keycode 27 = Escape Escape
+keycode 32 = space space
+keycode 33 = Prior
+keycode 34 = Next
+keycode 35 = End
+keycode 36 = Home
+keycode 37 = Left
+keycode 38 = Up
+keycode 39 = Right
+keycode 40 = Down
+keycode 41 = Select
+keycode 42 = Print
+keycode 43 = Execute
+keycode 45 = Insert
+keycode 46 = Delete
+keycode 47 = Help
+keycode 48 = 0 equal braceright
+keycode 49 = 1 exclam onesuperior
+keycode 50 = 2 quotedbl twosuperior
+keycode 51 = 3 section threesuperior
+keycode 52 = 4 dollar
+keycode 53 = 5 percent
+keycode 54 = 6 ampersand
+keycode 55 = 7 slash braceleft
+keycode 56 = 8 parenleft bracketleft
+keycode 57 = 9 parenright bracketright
+keycode 65 = a A
+keycode 66 = b B
+keycode 67 = c C
+keycode 68 = d D
+keycode 69 = e E EuroSign
+keycode 70 = f F
+keycode 71 = g G
+keycode 72 = h H
+keycode 73 = i I
+keycode 74 = j J
+keycode 75 = k K
+keycode 76 = l L
+keycode 77 = m M mu
+keycode 78 = n N
+keycode 79 = o O
+keycode 80 = p P
+keycode 81 = q Q at
+keycode 82 = r R
+keycode 83 = s S
+keycode 84 = t T
+keycode 85 = u U
+keycode 86 = v V
+keycode 87 = w W
+keycode 88 = x X
+keycode 89 = y Y
+keycode 90 = z Z
+keycode 96 = KP_0 KP_0
+keycode 97 = KP_1 KP_1
+keycode 98 = KP_2 KP_2
+keycode 99 = KP_3 KP_3
+keycode 100 = KP_4 KP_4
+keycode 101 = KP_5 KP_5
+keycode 102 = KP_6 KP_6
+keycode 103 = KP_7 KP_7
+keycode 104 = KP_8 KP_8
+keycode 105 = KP_9 KP_9
+keycode 106 = KP_Multiply KP_Multiply
+keycode 107 = KP_Add KP_Add
+keycode 108 = KP_Separator KP_Separator
+keycode 109 = KP_Subtract KP_Subtract
+keycode 110 = KP_Decimal KP_Decimal
+keycode 111 = KP_Divide KP_Divide
+keycode 112 = F1
+keycode 113 = F2
+keycode 114 = F3
+keycode 115 = F4
+keycode 116 = F5
+keycode 117 = F6
+keycode 118 = F7
+keycode 119 = F8
+keycode 120 = F9
+keycode 121 = F10
+keycode 122 = F11
+keycode 123 = F12
+keycode 124 = F13
+keycode 125 = F14
+keycode 126 = F15
+keycode 127 = F16
+keycode 128 = F17
+keycode 129 = F18
+keycode 130 = F19
+keycode 131 = F20
+keycode 132 = F21
+keycode 133 = F22
+keycode 134 = F23
+keycode 135 = F24
+keycode 136 = Num_Lock
+keycode 137 = Scroll_Lock
+keycode 187 = acute grave
+keycode 188 = comma semicolon
+keycode 189 = minus underscore
+keycode 190 = period colon
+keycode 192 = numbersign apostrophe
+keycode 210 = plusminus hyphen macron
+keycode 211 =
+keycode 212 = copyright registered
+keycode 213 = guillemotleft guillemotright
+keycode 214 = masculine ordfeminine
+keycode 215 = ae AE
+keycode 216 = cent yen
+keycode 217 = questiondown exclamdown
+keycode 218 = onequarter onehalf threequarters
+keycode 220 = less greater bar
+keycode 221 = plus asterisk asciitilde
+keycode 227 = multiply division
+keycode 228 = acircumflex Acircumflex
+keycode 229 = ecircumflex Ecircumflex
+keycode 230 = icircumflex Icircumflex
+keycode 231 = ocircumflex Ocircumflex
+keycode 232 = ucircumflex Ucircumflex
+keycode 233 = ntilde Ntilde
+keycode 234 = yacute Yacute
+keycode 235 = oslash Ooblique
+keycode 236 = aring Aring
+keycode 237 = ccedilla Ccedilla
+keycode 238 = thorn THORN
+keycode 239 = eth ETH
+keycode 240 = diaeresis cedilla currency
+keycode 241 = agrave Agrave atilde Atilde
+keycode 242 = egrave Egrave
+keycode 243 = igrave Igrave
+keycode 244 = ograve Ograve otilde Otilde
+keycode 245 = ugrave Ugrave
+keycode 246 = adiaeresis Adiaeresis
+keycode 247 = ediaeresis Ediaeresis
+keycode 248 = idiaeresis Idiaeresis
+keycode 249 = odiaeresis Odiaeresis
+keycode 250 = udiaeresis Udiaeresis
+keycode 251 = ssharp question backslash
+keycode 252 = asciicircum degree
+keycode 253 = 3 sterling
+keycode 254 = Mode_switch
+</code></pre>
+            </div>
+
+            <!-- Post Comments 
+                %- partial('_partial/ comment') % -->
+
+            <!-- exceptional -->
+            <!-- 使用 changyan -->
+<div id="exceptional-comment">
+    <div id="exceptional-btn">赏</div>
+    <div id="exceptional">
+        <img src="/images/pay/wepay.jpg" alt=""><!-- 
+         --><img src="/images/pay/zhipay.jpg" alt="">
+         <div class="exceptional_des">
+             谢谢你的支持和打赏(๑´灬`๑)~
+         </div>
+         <div class="aa"></div>
+    </div>
+</div>
+<style>
+    #exceptional-comment{
+        background-color: #eee;
+        padding: 2pc;
+        position: relative
+    }
+    #exceptional-comment #exceptional-btn{
+        width: 6pc;
+        height: 6pc;
+        line-height: 6pc;
+        text-align: center;
+        background: #EDC471;
+        color: #808081;
+        margin:  0pc auto 1pc;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px #888;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    #exceptional{
+        width: 600px;
+        position: absolute;
+        bottom: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 3px #888;
+        padding: 5px;
+        display: none;
+    }
+    #exceptional img{
+        width: 50%
+    }
+    #exceptional .exceptional_des{
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    #exceptional .aa{
+        width: 20px;;
+        height: 20px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        background: #fff;
+        
+        box-shadow: 3px 3px 6px -1px #888
+    }
+    @media screen and (max-width: 900px) {
+
+        #exceptional{
+            width: 20pc;
+            position: absolute;
+            bottom: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 1px 15px 3px #888;
+            padding: 5px
+        }
+
+	}
+
+</style>
+<script>
+    var exceptionalbtn = document.getElementById('exceptional-btn');
+    var bodys = document.getElementsByTagName('body');
+    var body = bodys[0]
+    var i = 0
+    exceptionalbtn.onclick = function(ev){
+        var oEvent = ev || event;
+        i++
+        oEvent.cancelBubble = true;
+        if(i%2 == 1){
+            // 显示
+            document.getElementById("exceptional").style.display="block";
+        } else {
+            // 隐藏
+            document.getElementById("exceptional").style.display="none";
+        }
+    }
+    body.onclick = function(ev){
+        i = 0
+        document.getElementById("exceptional").style.display="none";
+    }
+</script>
+            
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By hexo</li>
+                <li>Design: miccall</li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2019总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
