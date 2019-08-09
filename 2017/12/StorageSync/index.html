@@ -31,12 +31,12 @@
           background-size: cover; 
         }
         
-        body::-webkit-scrollbar {
+        ::-webkit-scrollbar {
             width: 16px;
             background-color: #CABDAD;
         }
         
-        body::-webkit-scrollbar-thumb {
+        ::-webkit-scrollbar-thumb {
             border-radius: 16px;
             background: linear-gradient(
             45deg,
@@ -49,6 +49,19 @@
             );
             box-shadow: 0 0 .8px .5px rgba(0,0,0,.4);
             -webkit-box-shadow: 0 0 .8px .5px rgba(0,0,0,.4);
+        }
+
+        @media all and (min-width: 768px) and (max-width: 1024px) {
+            ::-webkit-scrollbar {
+                display: none;
+                opacity: 0;
+            }
+        }
+        @media screen and (min-width: 320px)and (max-width: 750px){
+            ::-webkit-scrollbar {
+                display: none;
+                opacity: 0;
+            }
         }
     </style>
     
