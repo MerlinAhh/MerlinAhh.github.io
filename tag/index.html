@@ -30,7 +30,39 @@
           left: 0;
           background-size: cover; 
         }
+        
+        body::-webkit-scrollbar {
+            width: 16px;
+            background-color: #CABDAD;
+        }
+        
+        body::-webkit-scrollbar-thumb {
+            border-radius: 16px;
+            background: linear-gradient(
+            45deg,
+            #573406 25%,
+            #e9c76bb7 0,
+            #e9c76bb7 50%,
+            #573406 0,
+            #573406 75%,
+            #e9c76bb7 0
+            );
+            box-shadow: 0 0 .8px .5px rgba(0,0,0,.4);
+            -webkit-box-shadow: 0 0 .8px .5px rgba(0,0,0,.4);
+        }
     </style>
+    
+    <!-- 监听用户停留页面 -->
+    <script type="text/javascript">
+        var normal_title = document.title;
+        document.addEventListener('visibilitychange', function() {
+            if(document.visibilityState == 'hidden') {
+                document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+            } else {
+                document.title = normal_title;
+            }
+        });
+    </script>
 
 			    
   
@@ -108,6 +140,14 @@
 	        
 	        <!-- archives  归档   --> 
 	        
+	        <li class="active">
+	            <a href="#s1">归档</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="archive-link" href="/archives/2018/06/">June 2018</a></li><li><a class="archive-link" href="/archives/2017/12/">December 2017</a></li><li><a class="archive-link" href="/archives/2017/11/">November 2017</a></li><li><a class="archive-link" href="/archives/2017/08/">August 2017</a></li><li><a class="archive-link" href="/archives/2017/05/">May 2017</a>
+	                    </ul>
+	        </li>
+	        
 	        
 		        <!-- Pages 自定义   -->
 		        
@@ -166,7 +206,7 @@
         <section class="special">
                             <div class="row" style="border-bottom: none;">
 
-        <a href="/tags/Js/" style="font-size: 16px;">Js</a> <a href="/tags/RegExp/" style="font-size: 16.5px;">RegExp</a> <a href="/tags/Storage/" style="font-size: 16px;">Storage</a> <a href="/tags/function/" style="font-size: 16px;">function</a> <a href="/tags/webApp/" style="font-size: 17px;">webApp</a>
+        <a href="/tags/Js/" style="font-size: 16.5px;">Js</a> <a href="/tags/RegExp/" style="font-size: 16.5px;">RegExp</a> <a href="/tags/Storage/" style="font-size: 16px;">Storage</a> <a href="/tags/function/" style="font-size: 16px;">function</a> <a href="/tags/webApp/" style="font-size: 17px;">webApp</a>
 
                             </div>
                     
@@ -186,5 +226,54 @@
 </body>
 
 
+
+
+<!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event) 
+    document.captureEvents(Event.MOUSEUP); 
+
+    function nocontextmenu(){
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e){
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3){
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event){
+        if(window.event){
+            event = window.event;
+        }try{
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
  	
 </html>

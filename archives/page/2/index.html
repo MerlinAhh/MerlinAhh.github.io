@@ -30,7 +30,39 @@
           left: 0;
           background-size: cover; 
         }
+        
+        body::-webkit-scrollbar {
+            width: 16px;
+            background-color: #CABDAD;
+        }
+        
+        body::-webkit-scrollbar-thumb {
+            border-radius: 16px;
+            background: linear-gradient(
+            45deg,
+            #573406 25%,
+            #e9c76bb7 0,
+            #e9c76bb7 50%,
+            #573406 0,
+            #573406 75%,
+            #e9c76bb7 0
+            );
+            box-shadow: 0 0 .8px .5px rgba(0,0,0,.4);
+            -webkit-box-shadow: 0 0 .8px .5px rgba(0,0,0,.4);
+        }
     </style>
+    
+    <!-- 监听用户停留页面 -->
+    <script type="text/javascript">
+        var normal_title = document.title;
+        document.addEventListener('visibilitychange', function() {
+            if(document.visibilityState == 'hidden') {
+                document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+            } else {
+                document.title = normal_title;
+            }
+        });
+    </script>
 
 			    
   
@@ -103,6 +135,14 @@
 	        
 	        <!-- archives  归档   --> 
 	        
+	        <li class="active">
+	            <a href="#s1">归档</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="archive-link" href="/archives/2018/06/">June 2018</a></li><li><a class="archive-link" href="/archives/2017/12/">December 2017</a></li><li><a class="archive-link" href="/archives/2017/11/">November 2017</a></li><li><a class="archive-link" href="/archives/2017/08/">August 2017</a></li><li><a class="archive-link" href="/archives/2017/05/">May 2017</a>
+	                    </ul>
+	        </li>
+	        
 	        
 		        <!-- Pages 自定义   -->
 		        
@@ -155,34 +195,6 @@
                 
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
-                       <a href="/2017/11/weApp_Modal/">
-                        <div class="page_title" style="background-image: url(/z-img/showModal.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
-                            <!--标题-->
-                            <h2 class="page_title_text"> 小程序_Modal 模态框弹出提示的几种设置方法 </h2>
-                            <!--段落-->
-                        </div>
-                        </a>
-                        <div class="home-post-info">
-                            <!-- Author Avatar -->
-                            <div class="home-post-info-author-avatar">
-                                <h6><span class="home-post-info-data">2017-11-04</span></h6>
-                                <div class="home-post-info-Category">
-                                    <!-- Category -->
-                                    <span>
-                            <h6>
-                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
-                                <a class="post_category-link" href="/categories/微信小程序/">微信小程序</a></a>
-                            </h6>
-                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <!-- 文章sample  e-->
-            
-                <div class="6u 12u(narrower)">
-                    <section class="link_box special">
                        <a href="/2017/11/weApp_Toast/">
                         <div class="page_title" style="background-image: url(/z-img/showToast.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
@@ -211,6 +223,34 @@
             
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
+                       <a href="/2017/08/Disable-keyboard-and-mouse/">
+                        <div class="page_title" style="background-image: url(/z-img/disableCopy.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <h2 class="page_title_text"> PC端鼠标及键盘的禁用 </h2>
+                            <!--段落-->
+                        </div>
+                        </a>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2017-08-08</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
+                                <a class="post_category-link" href="/categories/JavaScript/">JavaScript</a></a>
+                            </h6>
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+            
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
                        <a href="/2017/05/hello-world/">
                         <div class="page_title" style="background-image: url(/z-img/helloWorld.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
@@ -228,6 +268,34 @@
                             <h6>
                             <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
                                 </a>
+                            </h6>
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+            
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                       <a href="/2017/05/Interesting-Operations-on-Browsers/">
+                        <div class="page_title" style="background-image: url(/z-img/disableCopy.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <h2 class="page_title_text"> 关于浏览器显示的一些有趣操作~~~ </h2>
+                            <!--段落-->
+                        </div>
+                        </a>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2017-05-01</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
+                                <a class="post_category-link" href="/categories/JavaScript/">JavaScript</a></a>
                             </h6>
                         </span>
                                 </div>

@@ -135,7 +135,7 @@
 
 			#intro a:hover {
 				border-bottom-color: transparent;
-				color: #18bfef !important;
+				color: #e9c76b !important;
 			}
 
 		#intro strong, #intro b {
@@ -175,8 +175,8 @@
 			#intro input[type="button"]:hover,
 			#intro button:hover,
 			#intro .button:hover {
-				box-shadow: inset 0 0 0 2px #18bfef;
-				color: #18bfef !important;
+				box-shadow: inset 0 0 0 2px #e9c76b;
+				color: #e9c76b !important;
 			}
 
 			#intro input[type="submit"].special,
@@ -194,7 +194,7 @@
 				#intro input[type="button"].special:hover,
 				#intro button.special:hover,
 				#intro .button.special:hover {
-					background-color: #18bfef;
+					background-color: #e9c76b;
 				}
 
 		#intro h1 {
@@ -386,7 +386,7 @@
 		}
 
 	body {
-		color: #212931;
+		color: #3f3f3f;
 	}
 
 	body, input, select, textarea {
@@ -527,25 +527,25 @@
 	}
 
 	input, select, textarea {
-		color: #212931;
+		color: #1e2729;
 	}
 
 	a {
-		color: #212931;
+		color: #1e2729;
 		border-bottom-color: rgba(33, 41, 49, 0.5);
 	}
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #18bfef !important;
+			color: #e9c76b !important;
 		}
 
 	strong, b {
-		color: #212931;
+		color: #1e2729;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #212931;
+		color: #1e2729;
 	}
 
 	blockquote {
@@ -735,8 +735,8 @@
 	button,
 	.button {
 		background-color: transparent;
-		box-shadow: inset 0 0 0 2px #212931;
-		color: #212931 !important;
+		box-shadow: inset 0 0 0 2px #1e2729;
+		color: #1e2729 !important;
 	}
 
 		input[type="submit"]:hover,
@@ -744,8 +744,8 @@
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			box-shadow: inset 0 0 0 2px #18bfef;
-			color: #18bfef !important;
+			box-shadow: inset 0 0 0 2px #e9c76b;
+			color: #e9c76b !important;
 		}
 
 		input[type="submit"].special,
@@ -753,7 +753,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #212931;
+			background-color: #1e2729;
 			box-shadow: none;
 			color: #ffffff !important;
 		}
@@ -763,7 +763,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #18bfef;
+				background-color: #e9c76b;
 			}
 
 /* Icon */
@@ -980,7 +980,7 @@
 	}
 
 	ul.icons li a.icon:hover:before {
-		color: #18bfef;
+		color: #e9c76b;
 	}
 
 	ul.icons.alt li .icon:before {
@@ -988,7 +988,7 @@
 	}
 
 	ul.icons.alt li a.icon:hover:before {
-		box-shadow: inset 0 0 0 2px #18bfef;
+		box-shadow: inset 0 0 0 2px #e9c76b;
 	}
 
 /* Section/Article */
@@ -1087,17 +1087,17 @@
 	}
 
 	.pagination a {
-		color: #212931 !important;
+		color: #1e2729 !important;
 	}
 
 		.pagination a:hover {
-			color: #18bfef !important;
-			border-color: #18bfef;
+			color: #e9c76b !important;
+			border-color: #e9c76b;
 			z-index: 1;
 		}
 
 			.pagination a:hover + a, .pagination a:hover + span {
-				border-left-color: #18bfef;
+				border-left-color: #e9c76b;
 			}
 
 		.pagination a.active {
@@ -1154,7 +1154,7 @@
 
 			#header a:hover {
 				border-bottom-color: transparent;
-				color: #18bfef !important;
+				color: #e9c76b !important;
 			}
 
 		#header strong, #header b {
@@ -1201,8 +1201,8 @@
 		}
 
 			#header .logo:hover {
-				border-color: #18bfef !important;
-				color: #18bfef !important;
+				border-color: #e9c76b !important;
+				color: #e9c76b !important;
 			}
 
 		@media screen and (max-width: 980px) {
@@ -1253,7 +1253,7 @@
 		}
 
 		#nav ul.icons li a.icon:hover:before {
-			color: #18bfef;
+			color: #e9c76b;
 		}
 
 		#nav ul.icons.alt li .icon:before {
@@ -1261,7 +1261,7 @@
 		}
 
 		#nav ul.icons.alt li a.icon:hover:before {
-			box-shadow: inset 0 0 0 2px #18bfef;
+			box-shadow: inset 0 0 0 2px #e9c76b;
 		}
 
 		#nav input, #nav select, #nav textarea {
@@ -1276,7 +1276,7 @@
 
 			#nav a:hover {
 				border-bottom-color: transparent;
-				color: #18bfef !important;
+				color: #e9c76b !important;
 			}
 
 		#nav strong, #nav b {
@@ -1359,7 +1359,7 @@
 						}
 
 						#nav ul.links li.active a:hover {
-							color: #1E90FF !important;
+							color: #e9c76b !important;
 						}
 
 		#nav ul.icons {
@@ -1453,7 +1453,7 @@
 
 			#footer a:hover {
 				border-bottom-color: transparent;
-				color: #18bfef !important;
+				color: #e9c76b !important;
 			}
 
 		#footer strong, #footer b {
@@ -1496,8 +1496,8 @@
 			#footer input[type="button"]:hover,
 			#footer button:hover,
 			#footer .button:hover {
-				box-shadow: inset 0 0 0 2px #18bfef;
-				color: #18bfef !important;
+				box-shadow: inset 0 0 0 2px #e9c76b;
+				color: #e9c76b !important;
 			}
 
 			#footer input[type="submit"].special,
@@ -1515,7 +1515,7 @@
 				#footer input[type="button"].special:hover,
 				#footer button.special:hover,
 				#footer .button.special:hover {
-					background-color: #18bfef;
+					background-color: #e9c76b;
 				}
 
 		#footer label {
@@ -1535,7 +1535,7 @@
 			#footer input[type="email"]:focus,
 			#footer select:focus,
 			#footer textarea:focus {
-				border-color: #18bfef;
+				border-color: #e9c76b;
 			}
 
 		#footer select option {
@@ -1566,7 +1566,7 @@
 
 		#footer input[type="checkbox"]:focus + label:before,
 		#footer input[type="radio"]:focus + label:before {
-			border-color: #18bfef;
+			border-color: #e9c76b;
 		}
 
 		#footer ::-webkit-input-placeholder {
@@ -1594,7 +1594,7 @@
 		}
 
 		#footer ul.icons li a.icon:hover:before {
-			color: #18bfef;
+			color: #e9c76b;
 		}
 
 		#footer ul.icons.alt li .icon:before {
@@ -1602,7 +1602,7 @@
 		}
 
 		#footer ul.icons.alt li a.icon:hover:before {
-			box-shadow: inset 0 0 0 2px #18bfef;
+			box-shadow: inset 0 0 0 2px #e9c76b;
 		}
 
 		#footer header.major .date:before, #footer header.major .date:after {
@@ -1642,13 +1642,13 @@
 		}
 
 			#footer .pagination a:hover {
-				color: #18bfef !important;
-				border-color: #18bfef;
+				color: #e9c76b !important;
+				border-color: #e9c76b;
 				z-index: 1;
 			}
 
 				#footer .pagination a:hover + a, #footer .pagination a:hover + span {
-					border-left-color: #18bfef;
+					border-left-color: #e9c76b;
 				}
 
 			#footer .pagination a.active {
@@ -1885,7 +1885,7 @@
 
 			#copyright a:hover {
 				border-bottom-color: transparent;
-				color: #18bfef !important;
+				color: #e9c76b !important;
 			}
 
 		#copyright strong, #copyright b {
@@ -1997,7 +1997,7 @@
 		#navPanelToggle.alt {
 			background-color: rgba(255, 255, 255, 0.875);
 			box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
-			color: #212931;
+			color: #1e2729;
 		}
 
 			#navPanelToggle.alt:hover {
@@ -2112,7 +2112,7 @@
 			}
 
 			#navPanel .close:hover {
-				color: #212931;
+				color: #1e2729;
 			}
 
 			@media screen and (max-width: 736px) {
