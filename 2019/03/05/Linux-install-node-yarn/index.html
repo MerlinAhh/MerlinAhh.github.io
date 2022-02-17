@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                Linux 系统安装及升级 node / yarn | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="安装 yarn + node在 CentOS 7.4 系统上安装 yarn，先建立一个 yum repo 的文件 1curl --silent --location https:&#x2F;&#x2F;dl.yarnpkg.com&#x2F;rpm&#x2F;yarn.repo | sudo tee &#x2F;etc&#x2F;yum.repos.d&#x2F;yarn.repo 安装 node1sudo yum install -y nodejs 安装yarn1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 系统安装及升级 node &#x2F; yarn">
+<meta property="og:url" content="https://merlinahh.github.io/2019/03/05/Linux-install-node-yarn/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="安装 yarn + node在 CentOS 7.4 系统上安装 yarn，先建立一个 yum repo 的文件 1curl --silent --location https:&#x2F;&#x2F;dl.yarnpkg.com&#x2F;rpm&#x2F;yarn.repo | sudo tee &#x2F;etc&#x2F;yum.repos.d&#x2F;yarn.repo 安装 node1sudo yum install -y nodejs 安装yarn1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-05T04:50:02.000Z">
+<meta property="article:modified_time" content="2022-02-16T22:22:26.705Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="yarn">
+<meta name="twitter:card" content="summary">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2019/03/05/Linux-install-node-yarn/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.67px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.67px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.67px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.33px;">RegExp</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px;">小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/11/MongoDB-study/" class="title">MongoDB 用法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/05/Linux-install-node-yarn/" class="title">Linux 系统安装及升级 node / yarn</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/Linux-user-sudo/" class="title">Linux 用户管理及用户权限设置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T00:49:41.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/Linux-install-Nginx/" class="title">Linux 系统 Nginx 安装与配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T20:29:14.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/linux-study/" class="title">Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-yarn-node"><span class="toc-text">安装 yarn + node</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-node"><span class="toc-text">安装 node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85yarn"><span class="toc-text">安装yarn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7-node"><span class="toc-text">升级 node</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#n-%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">n 模块常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#yarn-%E4%B8%8E-npm"><span class="toc-text">yarn 与 npm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="toc-text">yarn的简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">yarn的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">yarn的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">yarn的常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-text">yarn的配置项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8C%85%EF%BC%88%E4%BC%9A%E6%9B%B4%E6%96%B0package-json%E5%92%8Cyarn-lock%EF%BC%89"><span class="toc-text">添加包（会更新package.json和yarn.lock）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%8C%85"><span class="toc-text">发布包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E4%B8%80%E4%B8%AA%E5%8C%85"><span class="toc-text">移除一个包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E4%B8%80%E4%B8%AA%E4%BE%9D%E8%B5%96"><span class="toc-text">更新一个依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="toc-text">运行脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%9F%90%E4%B8%AA%E5%8C%85%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">显示某个包的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-text">缓存</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-Linux-install-node-yarn" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 系统安装及升级 node / yarn
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/03/05/Linux-install-node-yarn/" class="article-date">
+	  <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+  </span>
+  
+                    
+	<span class="article-tag">
+		<i class="icon icon-tag"></i>
+		<a class="article-tag-link-link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="article-tag-link-link" href="/tags/Node-js/" rel="tag">Node.js</a>, <a class="article-tag-link-link" href="/tags/yarn/" rel="tag">yarn</a>
+	</span>
+	
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2019/03/05/Linux-install-node-yarn/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <h1 id="安装-yarn-node"><a href="#安装-yarn-node" class="headerlink" title="安装 yarn + node"></a>安装 yarn + node</h1><p>在 CentOS 7.4 系统上安装 yarn，先建立一个 yum repo 的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo</span><br></pre></td></tr></table></figure>
+<h2 id="安装-node"><a href="#安装-node" class="headerlink" title="安装 node"></a>安装 node</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y nodejs</span><br></pre></td></tr></table></figure>
+<h2 id="安装yarn"><a href="#安装yarn" class="headerlink" title="安装yarn"></a>安装yarn</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum search yarn  搜索 yarn 软件包</span><br><span class="line">yum info yarn      显示当前的 yarn 软件包信息</span><br><span class="line">yum install yarn   安装 yarn 软件包</span><br><span class="line">yarn --version    显示已安装的 yarn 软件包版本信息</span><br></pre></td></tr></table></figure>
+<h2 id="升级-node"><a href="#升级-node" class="headerlink" title="升级 node"></a>升级 node</h2><ol>
+<li>安装 node 管理器 n</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add n</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>查找 node 安装位置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">which node</span><br><span class="line">    data/home/server/nodejs</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>编辑环境变量配置文件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br><span class="line">    export N_PREFIX=/data/home/server/nodejs #node 实际安装位置</span><br><span class="line">    export PATH=$N_PREFIX/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>:wq 保存退出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>确认环境变量是否生效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo $N_PREFIX</span><br><span class="line">    /data/home/server/nodejs</span><br></pre></td></tr></table></figure>
+<h1 id="n-模块常用命令"><a href="#n-模块常用命令" class="headerlink" title="n 模块常用命令"></a>n 模块常用命令</h1><table>
+<thead>
+<tr>
+<th align="left">n</th>
+<th align="left">查看已安装版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">n latest</td>
+<td align="left">安装 node 最新版本</td>
+</tr>
+<tr>
+<td align="left">n -a x86 latest</td>
+<td align="left">As above but force 32 bit architecture</td>
+</tr>
+<tr>
+<td align="left">n stable</td>
+<td align="left">安装稳定版</td>
+</tr>
+<tr>
+<td align="left">n lts</td>
+<td align="left">Install or activate the latest LTS node release</td>
+</tr>
+<tr>
+<td align="left">n <version></td>
+<td align="left">安装指定版本</td>
+</tr>
+<tr>
+<td align="left">n use <version> [args …]</td>
+<td align="left">使用指定版本</td>
+</tr>
+<tr>
+<td align="left">n bin <version></td>
+<td align="left">Output bin path for <version></td>
+</tr>
+<tr>
+<td align="left">n rm &lt;version …&gt;</td>
+<td align="left">删除指定版本</td>
+</tr>
+<tr>
+<td align="left">n prune</td>
+<td align="left">Remove all versions except the current version</td>
+</tr>
+<tr>
+<td align="left">n –latest</td>
+<td align="left">Output the latest node version available</td>
+</tr>
+<tr>
+<td align="left">n –stable</td>
+<td align="left">Output the latest stable node version available</td>
+</tr>
+<tr>
+<td align="left">n –lts</td>
+<td align="left">Output the latest LTS node version available</td>
+</tr>
+<tr>
+<td align="left">n ls</td>
+<td align="left">Output the versions of node available</td>
+</tr>
+</tbody></table>
+<h1 id="yarn-与-npm"><a href="#yarn-与-npm" class="headerlink" title="yarn 与 npm"></a>yarn 与 npm</h1><h2 id="yarn的简介"><a href="#yarn的简介" class="headerlink" title="yarn的简介"></a><strong>yarn的简介</strong></h2><p>Yarn是facebook发布的一款取代npm的包管理工具。</p>
+<h2 id="yarn的特点"><a href="#yarn的特点" class="headerlink" title="yarn的特点"></a><strong>yarn的特点</strong></h2><p>速度超快。Yarn 缓存了每个下载过的包，所以再次使用时无需重复下载。 同时利用并行下载以最大化资源利用率，因此安装速度更快。</p>
+<p>超级安全。在执行代码之前，Yarn 会通过算法校验每个安装包的完整性。</p>
+<p>超级可靠。使用详细、简洁的锁文件格式和明确的安装算法，Yarn 能够保证在不同系统上无差异的工作。</p>
+<h2 id="yarn的安装"><a href="#yarn的安装" class="headerlink" title="yarn的安装"></a><strong>yarn的安装</strong></h2><p>下载node.js，使用npm安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure>
+<p>查看版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn --version</span><br></pre></td></tr></table></figure>
+<p>安装node.js,下载yarn的安装程序:</p>
+<p>提供一个.msi文件，在运行时将引导您在Windows上安装Yarn</p>
+<p>Yarn 淘宝源安装，分别复制粘贴以下代码行到黑窗口运行即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn config set registry https://registry.npm.taobao.org -g</span><br><span class="line"></span><br><span class="line">yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g</span><br></pre></td></tr></table></figure>
+<h2 id="yarn的常用命令"><a href="#yarn的常用命令" class="headerlink" title="yarn的常用命令"></a><strong>yarn的常用命令</strong></h2><p>安装yarn：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure>
+<p>安装成功后，查看版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn --version</span><br></pre></td></tr></table></figure>
+<p>创建文件夹 yarn：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md yarn</span><br></pre></td></tr></table></figure>
+<p>进入yarn文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd yarn</span><br></pre></td></tr></table></figure>
+<p>初始化项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn init // 同npm init，执行输入信息后，会生成package.json文件</span><br></pre></td></tr></table></figure>
+<h2 id="yarn的配置项"><a href="#yarn的配置项" class="headerlink" title="yarn的配置项"></a><strong>yarn的配置项</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yarn config list // 显示所有配置项</span><br><span class="line">yarn config get &lt;key&gt; //显示某配置项</span><br><span class="line">yarn config delete &lt;key&gt; //删除某配置项</span><br><span class="line">yarn config set &lt;key&gt; &lt;value&gt; [-g|--global] //设置配置项</span><br></pre></td></tr></table></figure>
+<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a><strong>安装包</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yarn install //安装package.json里所有包，并将包及它的所有依赖项保存进yarn.lock</span><br><span class="line">yarn install --flat //安装一个包的单一版本</span><br><span class="line">yarn install --force //强制重新下载所有包</span><br><span class="line">yarn install --production //只安装dependencies里的包</span><br><span class="line">yarn install --no-lockfile //不读取或生成yarn.lock</span><br><span class="line">yarn install --pure-lockfile //不生成yarn.lock</span><br></pre></td></tr></table></figure>
+<h2 id="添加包（会更新package-json和yarn-lock）"><a href="#添加包（会更新package-json和yarn-lock）" class="headerlink" title="添加包（会更新package.json和yarn.lock）"></a><strong>添加包（会更新package.json和yarn.lock）</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add [package] // 在当前的项目中添加一个依赖包，会自动更新到package.json和yarn.lock文件中</span><br><span class="line">yarn add [package]@[version] // 安装指定版本，这里指的是主要版本，如果需要精确到小版本，使用-E参数</span><br><span class="line">yarn add [package]@[tag] // 安装某个tag（比如beta,next或者latest）</span><br></pre></td></tr></table></figure>
+<p>不指定依赖类型默认安装到dependencies里，你也可以指定依赖类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev/-D // 加到 devDependencies</span><br><span class="line">yarn add --peer/-P // 加到 peerDependencies</span><br><span class="line">yarn add --optional/-O // 加到 optionalDependencies</span><br></pre></td></tr></table></figure>
+<p>默认安装包的主要版本里的最新版本，下面两个命令可以指定版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add --exact/-E // 安装包的精确版本。例如yarn add foo@1.2.3会接受1.9.1版，但是yarn add foo@1.2.3 --exact只会接受1.2.3版</span><br><span class="line">yarn add --tilde/-T // 安装包的次要版本里的最新版。例如yarn add foo@1.2.3 --tilde会接受1.2.9，但不接受1.3.0</span><br></pre></td></tr></table></figure>
+<h2 id="发布包"><a href="#发布包" class="headerlink" title="发布包"></a><strong>发布包</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn publish</span><br></pre></td></tr></table></figure>
+<h2 id="移除一个包"><a href="#移除一个包" class="headerlink" title="移除一个包"></a><strong>移除一个包</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn remove &lt;packageName&gt;</span><br></pre></td></tr></table></figure>
+<p>移除一个包，会自动更新package.json和yarn.lock</p>
+<h2 id="更新一个依赖"><a href="#更新一个依赖" class="headerlink" title="更新一个依赖"></a><strong>更新一个依赖</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn upgrade</span><br></pre></td></tr></table></figure>
+<p>用于更新包到基于规范范围的最新版本</p>
+<h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a><strong>运行脚本</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn run </span><br></pre></td></tr></table></figure>
+<p>用来执行在 package.json 中 scripts 属性下定义的脚本</p>
+<h2 id="显示某个包的信息"><a href="#显示某个包的信息" class="headerlink" title="显示某个包的信息"></a><strong>显示某个包的信息</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn info &lt;packageName&gt; </span><br></pre></td></tr></table></figure>
+<p>可以用来查看某个模块的最新版本信息</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a><strong>缓存</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yarn cache</span><br><span class="line">yarn cache list # 列出已缓存的每个包 </span><br><span class="line">yarn cache dir # 返回 全局缓存位置 </span><br><span class="line">yarn cache clean # 清除缓存</span><br></pre></td></tr></table></figure>
+
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2019/03/05/Linux-install-node-yarn/" title="Linux 系统安装及升级 node / yarn" target="_blank" rel="external">
+          https://merlinahh.github.io/2019/03/05/Linux-install-node-yarn/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/11/11/MongoDB-study/" title="MongoDB 用法"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/02/17/Linux-user-sudo/" title="Linux 用户管理及用户权限设置"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2022
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>

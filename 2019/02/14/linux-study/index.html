@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理 | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="服务器目录. &#x2F;etc  配置文件 &#x2F;bin 就是常用命令 &#x2F;home  用户文件的根目录   相当于win的我的文档 &#x2F;usr   额外安装的linux软件 &#x2F;srv 一般是我们自己创建的  表示服务 阿里云自带一个空的srv目录  网络所谓网络  本质就是共享数据 起初  主机都是单机的 之所以叫计算机 是因为最早之前只能用来计算 局域网一个主机可以访问另一个主机了 它们互相连接 组成了局域网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理">
+<meta property="og:url" content="https://merlinahh.github.io/2019/02/14/linux-study/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="服务器目录. &#x2F;etc  配置文件 &#x2F;bin 就是常用命令 &#x2F;home  用户文件的根目录   相当于win的我的文档 &#x2F;usr   额外安装的linux软件 &#x2F;srv 一般是我们自己创建的  表示服务 阿里云自带一个空的srv目录  网络所谓网络  本质就是共享数据 起初  主机都是单机的 之所以叫计算机 是因为最早之前只能用来计算 局域网一个主机可以访问另一个主机了 它们互相连接 组成了局域网">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/1.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/2.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/3.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/4.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/5.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/6.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/7.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/8.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/9.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/10.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/11.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/02/14/linux-study/12.png">
+<meta property="article:published_time" content="2019-02-13T17:48:25.000Z">
+<meta property="article:modified_time" content="2022-02-15T09:16:05.699Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://merlinahh.github.io/2019/02/14/linux-study/1.png">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2019/02/14/linux-study/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.67px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.67px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.67px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.33px;">RegExp</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px;">小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/11/MongoDB-study/" class="title">MongoDB 用法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/05/Linux-install-node-yarn/" class="title">Linux 系统安装及升级 node / yarn</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/Linux-user-sudo/" class="title">Linux 用户管理及用户权限设置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T00:49:41.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/Linux-install-Nginx/" class="title">Linux 系统 Nginx 安装与配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T20:29:14.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/linux-study/" class="title">Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%AE%E5%BD%95"><span class="toc-text">服务器目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-text">局域网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">互联网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">客户端和服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E6%9C%89%E5%BE%88%E5%A4%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-text">主机有很多操作系统：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-text">代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E5%92%8C%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">域名和域名服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%8E%9F%E7%90%86"><span class="toc-text">DNS域名解析原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-text">浏览器访问服务器原理：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%9C%89%E4%B8%A4%E4%B8%AA%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">后端有两个解决方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%9E%8B%E6%9C%8D%E5%8A%A1%E4%B8%BB%E8%A6%81%E6%98%AF%E8%A7%A3%E5%86%B3%E4%B8%A4%E4%B8%AA%E4%BA%8B%EF%BC%9A"><span class="toc-text">大型服务主要是解决两个事：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-text">正向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%A4%84%E7%90%86%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-text">服务处理发展史</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">Nginx基本命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7yarn%E5%8F%8Anode"><span class="toc-text">Linux安装和升级yarn及node</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8"><span class="toc-text">Linux 命令大全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">其他命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%96%87%E7%AB%A0"><span class="toc-text">扩展文章</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-linux-study" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/02/14/linux-study/" class="article-date">
+	  <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+  </span>
+  
+                    
+	<span class="article-tag">
+		<i class="icon icon-tag"></i>
+		<a class="article-tag-link-link" href="/tags/Linux/" rel="tag">Linux</a>
+	</span>
+	
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2019/02/14/linux-study/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.9k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 7(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <h1 id="服务器目录"><a href="#服务器目录" class="headerlink" title="服务器目录"></a>服务器目录</h1><pre><code>.
+/etc  配置文件
+/bin 就是常用命令
+/home  用户文件的根目录   相当于win的我的文档
+/usr   额外安装的linux软件
+/srv 一般是我们自己创建的  表示服务 阿里云自带一个空的srv目录
+</code></pre>
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p>所谓网络  本质就是共享数据</p>
+<p>起初  主机都是单机的</p>
+<p>之所以叫计算机</p>
+<p>是因为最早之前只能用来计算</p>
+<h1 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h1><p>一个主机可以访问另一个主机了</p>
+<p>它们互相连接 组成了局域网</p>
+<h1 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h1><p>再发展就是互联网</p>
+<p>但本质上还是一个主机和另一个主机的连接数据交换</p>
+<p><img src="/2019/02/14/linux-study/1.png" alt="互联网"></p>
+<h1 id="客户端和服务端"><a href="#客户端和服务端" class="headerlink" title="客户端和服务端"></a>客户端和服务端</h1><p>再后来  衍生出来用户和服务</p>
+<p>客户端和服务端的概念</p>
+<h2 id="主机有很多操作系统："><a href="#主机有很多操作系统：" class="headerlink" title="主机有很多操作系统："></a><strong>主机有很多操作系统：</strong></h2><pre><code>* windoms利用可视化捕获一大批客户端用户
+* linux利用高效捕获了服务端的市场
+</code></pre>
+<p>客户端和服务端跟操作系统无关的  每个操作系统都可作为客户端和服务端</p>
+<p><strong>所以服务器的定义就是：</strong> 接受请求并返回数据的主机</p>
+<p><img src="/2019/02/14/linux-study/2.png" alt="客户端和服务端"></p>
+<p>那么就有人给这些主机开发服务器软件</p>
+<p><strong>服务器软件就是：</strong>处理请求和响应的软件，一般服务器都会存在服务器软件用来提供接受请求并响应</p>
+<p>很著名的就是Tomcat</p>
+<p>(所有的数据库其本质也是自带了服务器功能，主要功能是把数据保存在本地，次要功能也可以接受请求并响应，不需要通过别的软件)</p>
+<h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><p>在技术多变的今天，客户端和服务端就有很重要的问题 那就是安全 </p>
+<p>于是就有了 <strong>代理</strong> 技术</p>
+<p>所谓代理，就是客户端不想让服务端知道自己的真实地址，简单理解就是  VPN</p>
+<p><img src="/2019/02/14/linux-study/3.png" alt="代理"></p>
+<p>这样隐藏了真实的客户端地址和身份</p>
+<p>游戏加速器就是这个原理</p>
+<p>自己的地址被墙了 我们可以通过代理去请求数据 我们和代理交换数据就可以啦</p>
+<ul>
+<li><strong>正向代理</strong></li>
+</ul>
+<p>客户端主动访问 服务端被动接受请求 因为正向代理就是保护客户端的</p>
+<p><img src="/2019/02/14/linux-study/4.png" alt="正向代理"></p>
+<ul>
+<li><strong>反向代理</strong></li>
+</ul>
+<p>客户端请求服务端 服务端用一个向外暴露的服务器去接受 然后转发到真实服务器</p>
+<p>保护服务器真实地址</p>
+<p><img src="/2019/02/14/linux-study/5.png" alt="反向代理"></p>
+<h1 id="域名和域名服务器"><a href="#域名和域名服务器" class="headerlink" title="域名和域名服务器"></a>域名和域名服务器</h1><p>它隐藏了真实服务器的ip而暴露一个自定义域名 类似反向代理服务器</p>
+<p><img src="/2019/02/14/linux-study/6.png" alt="域名和域名服务器"></p>
+<p>域名服务器(DNS服务器)就是提供IP地址和域名之间的转换服务的服务器</p>
+<p>域名和IP地址相互映射(这真实ip是在买域名的时候 后台可以设置的 这就叫域名解析)</p>
+<h2 id="DNS域名解析原理"><a href="#DNS域名解析原理" class="headerlink" title="DNS域名解析原理"></a>DNS域名解析原理</h2><p>host就是本地DNS   输入网址  客户端首先找本地DNS没找到对应ip才会去网络DNS找  找到之后会带着网址向目标ip请求</p>
+<h2 id="浏览器访问服务器原理："><a href="#浏览器访问服务器原理：" class="headerlink" title="浏览器访问服务器原理："></a><strong>浏览器访问服务器原理：</strong></h2><p><img src="/2019/02/14/linux-study/7.png" alt="DNS域名解析原理"></p>
+<p>一个服务器请求量过大，服务器的后端程序会内存溢出，导致502</p>
+<p>代理ip可分发到多个实际服务器ip</p>
+<h3 id="后端有两个解决方式："><a href="#后端有两个解决方式：" class="headerlink" title="后端有两个解决方式："></a><strong>后端有两个解决方式：</strong></h3><ul>
+<li>分布式</li>
+</ul>
+<p>就是把一个服务拆分为多个</p>
+<p>一个业务分拆多个子业务，部署到不同的功能服务器，一个挂了就挂了😂 </p>
+<p><em>（如果项目不大  它一般安装在和服务同一台服务器里  直接把请求转到本地的服务器软件里）</em></p>
+<ul>
+<li>集群</li>
+</ul>
+<p>就是部署多个项目统一管理接受请求</p>
+<p>一套项目部署多台服务器，其中一台挂了，其他的可继续访问</p>
+<p>假设有多个服务器作为集群 那么怎么保证所有的请求均分而不导致某一个服务器被挤爆呢</p>
+<p><em>（如果项目特大  一般单独安装在一个服务器里  还可以实现负载均衡）</em></p>
+<p><strong>——负载均衡</strong></p>
+<h3 id="大型服务主要是解决两个事："><a href="#大型服务主要是解决两个事：" class="headerlink" title="大型服务主要是解决两个事："></a><strong>大型服务主要是解决两个事：</strong></h3><ul>
+<li><strong>高吞吐</strong>就是能承载高并发的请求处理</li>
+<li><strong>高可用</strong>就是系统的可用程度，包括安全 流畅 不出差错等等</li>
+</ul>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><ul>
+<li><strong>反向代理服务器</strong></li>
+</ul>
+<p>反向代理服务器是它最最主要的功能，能隐藏掉其服务器真实ip和端口</p>
+<ul>
+<li><strong>实现负载均衡</strong></li>
+</ul>
+<p>反向代理服务器在做<strong>负载均衡</strong>来实现所有集群节点的平均分配</p>
+<ul>
+<li><strong>HTTP服务器（静态资源服务器）</strong></li>
+</ul>
+<p>反向代理服务器可以把请求转到本地的服务器软件里</p>
+<p>这个服务器软件可以是Tomcat  也可以是nginx</p>
+<p>在前后端分离的时代  也就是现在   前端页面可以丢给nginx做静态映射   后端服务可以交给tomcat</p>
+<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a><strong>正向代理</strong></h2><h3 id="服务处理发展史"><a href="#服务处理发展史" class="headerlink" title="服务处理发展史"></a>服务处理发展史</h3><ol>
+<li><strong>裸奔时代</strong><br><img src="/2019/02/14/linux-study/8.png" alt="裸奔时代"></li>
+</ol>
+<p>域名访问 -&gt; 服务商域名解析，通过域名找到ip -&gt; 拿到ip访问tomcat -&gt; 返回页面</p>
+<ol start="2">
+<li><strong>DNS轮循</strong><br><img src="/2019/02/14/linux-study/9.png" alt="DNS轮循"></li>
+</ol>
+<p>1个域名映射3个ip  自带<strong>负载均衡</strong>（高吞吐 低可用）</p>
+<p>假设一个tomcat的并发量是每秒1000，那么这个服务的并发量就是每秒3000</p>
+<ol start="3">
+<li><strong>Nginx</strong><br><img src="/2019/02/14/linux-study/10.png" alt="Nginx"></li>
+</ol>
+<p>高吞吐 中可用</p>
+<p>其中一个tomcat挂掉了，可正常访问，nginx挂掉了就挂掉了</p>
+<ol start="4">
+<li><strong>keepalived</strong><br><img src="/2019/02/14/linux-study/11.png" alt="keepalived"></li>
+</ol>
+<p>keepalived实现nginx集群 挂一个还有一个</p>
+<ol start="5">
+<li><strong>keepalived+lvs</strong><br><img src="/2019/02/14/linux-study/12.png" alt="keepalived+lvs"></li>
+</ol>
+<p>nginx被lvs负载均衡 同时还负载均衡tomcat</p>
+<p>lvs是操作系统层面 请求不容易超过并发 同时lvs还是集群的 挂掉一个还有</p>
+<p><strong>超高并发</strong>+<strong>超高可用</strong></p>
+<p>给nginx集群一个负载均衡 请求会平分到各个nginx 各个nginx再反向代理+负载均衡到各个tomcat</p>
+<h1 id="Nginx基本命令"><a href="#Nginx基本命令" class="headerlink" title="Nginx基本命令"></a><a href="/2019/02/14/Linux-install-Nginx/">Nginx基本命令</a></h1><h1 id="Linux安装和升级yarn及node"><a href="#Linux安装和升级yarn及node" class="headerlink" title="Linux安装和升级yarn及node"></a><a href="/2019/03/05/Linux-install-node-yarn/">Linux安装和升级yarn及node</a></h1><h1 id="Linux-命令大全"><a href="#Linux-命令大全" class="headerlink" title="Linux 命令大全"></a>Linux 命令大全</h1><table>
+<thead>
+<tr>
+<th align="left">Linux 命令大全</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>1、文件管理</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cat.html">cat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chattr.html">chattr</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chgrp.html">chgrp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chmod.html">chmod</a></td>
+<td align="left">chown</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cksum.html">cksum</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cmp.html">cmp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-diff.html">diff</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-diffstat.html">diffstat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-file.html">file</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-find.html">find</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-git.html">git</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-gitview.html">gitview</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-indent.html">indent</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cut.html">cut</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ln.html">ln</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-less.html">less</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-locate.html">locate</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lsattr.html">lsattr</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mattrib.html">mattrib</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mc.html">mc</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mdel.html">mdel</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mdir.html">mdir</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mktemp.html">mktemp</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-more.html">more</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mmove.html">mmove</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mread.html">mread</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mren.html">mren</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mtools.html">mtools</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mtoolstest.html">mtoolstest</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mv.html">mv</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-od.html">od</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-paste.html">paste</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-patch.html">patch</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rcp.html">rcp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rm.html">rm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-slocate.html">slocate</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-split.html">split</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tee.html">tee</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tmpwatch.html">tmpwatch</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-touch.html">touch</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-umask.html">umask</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-which.html">which</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cp.html">cp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-whereis.html">whereis</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mcopy.html">mcopy</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mshowfat.html">mshowfat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rhmask.html">rhmask</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-scp.html">scp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-awk.html">awk</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-read.html">read</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-updatedb.html">updatedb</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>2、文档编辑</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-col.html">col</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-colrm.html">colrm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-comm.html">comm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-csplit.html">csplit</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ed.html">ed</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-egrep.html">egrep</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ex.html">ex</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fgrep.html">fgrep</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fmt.html">fmt</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fold.html">fold</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-grep.html">grep</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ispell.html">ispell</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-jed.html">jed</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-joe.html">joe</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-join.html">join</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-look.html">look</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mtype.html">mtype</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pico.html">pico</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rgrep.html">rgrep</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sed.html">sed</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sort.html">sort</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-spell.html">spell</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tr.html">tr</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-expr.html">expr</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uniq.html">uniq</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-wc.html">wc</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-let.html">let</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>3、文件传输</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lprm.html">lprm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lpr.html">lpr</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lpq.html">lpq</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lpd.html">lpd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-bye.html">bye</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ftp.html">ftp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uuto.html">uuto</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uupick.html">uupick</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uucp.html">uucp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uucico.html">uucico</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tftp.html">tftp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ncftp.html">ncftp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ftpshut.html">ftpshut</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ftpwho.html">ftpwho</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ftpcount.html">ftpcount</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>4、磁盘管理</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cd.html">cd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-df.html">df</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dirs.html">dirs</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-du.html">du</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-edquota.html">edquota</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-eject.html">eject</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mcd.html">mcd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mdeltree.html">mdeltree</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mdu.html">mdu</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkdir.html">mkdir</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mlabel.html">mlabel</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mmd.html">mmd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mrd.html">mrd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mzip.html">mzip</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pwd.html">pwd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-quota.html">quota</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mount.html">mount</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mmount.html">mmount</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rmdir.html">rmdir</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rmt.html">rmt</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-stat.html">stat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tree.html">tree</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-umount.html">umount</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ls.html">ls</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-quotacheck.html">quotacheck</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-quotaoff.html">quotaoff</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lndir.html">lndir</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-repquota.html">repquota</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-quotaon.html">quotaon</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>5、磁盘维护</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-badblocks.html">badblocks</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cfdisk.html">cfdisk</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dd.html">dd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-e2fsck.html">e2fsck</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ext2ed.html">ext2ed</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fsck.html">fsck</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fsck-minix.html">fsck.minix</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fsconf.html">fsconf</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fdformat.html">fdformat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-hdparm.html">hdparm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mformat.html">mformat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkbootdisk.html">mkbootdisk</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkdosfs.html">mkdosfs</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mke2fs.html">mke2fs</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkfs-ext2.html">mkfs.ext2</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkfs-msdos.html">mkfs.msdos</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkinitrd.html">mkinitrd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkisofs.html">mkisofs</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkswap.html">mkswap</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mpartition.html">mpartition</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-swapon.html">swapon</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-symlinks.html">symlinks</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sync.html">sync</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mbadblocks.html">mbadblocks</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkfs-minix.html">mkfs.minix</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fsck-ext2.html">fsck.ext2</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fdisk.html">fdisk</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-losetup.html">losetup</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkfs.html">mkfs</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sfdisk.html">sfdisk</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-swapoff.html">swapoff</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>6、网络通讯</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-apachectl.html">apachectl</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-arpwatch.html">arpwatch</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dip.html">dip</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-getty.html">getty</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mingetty.html">mingetty</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uux.html">uux</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-telnet.html">telnet</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uulog.html">uulog</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uustat.html">uustat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ppp-off.html">ppp-off</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-netconfig.html">netconfig</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-nc.html">nc</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-httpd.html">httpd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ifconfig.html">ifconfig</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-minicom.html">minicom</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mesg.html">mesg</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dnsconf.html">dnsconf</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-wall.html">wall</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-netstat.html">netstat</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ping.html">ping</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pppstats.html">pppstats</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-samba.html">samba</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-setserial.html">setserial</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-talk.html">talk</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-traceroute.html">traceroute</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tty.html">tty</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-newaliases.html">newaliases</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uuname.html">uuname</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-netconf.html">netconf</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-write.html">write</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-statserial.html">statserial</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-efax.html">efax</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pppsetup.html">pppsetup</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tcpdump.html">tcpdump</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ytalk.html">ytalk</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cu.html">cu</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-smbd.html">smbd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-testparm.html">testparm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-smbclient.html">smbclient</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-shapecfg.html">shapecfg</a></td>
+</tr>
+<tr>
+<td align="left"><strong>7、系统管理</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-adduser.html">adduser</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chfn.html">chfn</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-useradd.html">useradd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-date.html">date</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-exit.html">exit</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-finger.html">finger</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fwhios.html">fwhios</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sleep.html">sleep</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-suspend.html">suspend</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-groupdel.html">groupdel</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-groupmod.html">groupmod</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-halt.html">halt</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-kill.html">kill</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-last.html">last</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lastb.html">lastb</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-login.html">login</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-logname.html">logname</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-logout.html">logout</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ps.html">ps</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-nice.html">nice</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-procinfo.html">procinfo</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-top.html">top</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pstree.html">pstree</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-reboot.html">reboot</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rlogin.html">rlogin</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rsh.html">rsh</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sliplogin.html">sliplogin</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-screen.html">screen</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-shutdown.html">shutdown</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rwho.html">rwho</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sudo.html">sudo</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-gitps.html">gitps</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-swatch.html">swatch</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tload.html">tload</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-logrotate.html">logrotate</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uname.html">uname</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chsh.html">chsh</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-userconf.html">userconf</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-userdel.html">userdel</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-usermod.html">usermod</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-vlock.html">vlock</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-who.html">who</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-whoami.html">whoami</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-whois.html">whois</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-newgrp.html">newgrp</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-renice.html">renice</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-su.html">su</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-skill.html">skill</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-w.html">w</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-id.html">id</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-groupadd.html">groupadd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-free.html">free</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>8、系统设置</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-reset.html">reset</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-clear.html">clear</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-alias.html">alias</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dircolors.html">dircolors</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-aumix.html">aumix</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-bind.html">bind</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chroot.html">chroot</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-clock.html">clock</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-crontab.html">crontab</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-declare.html">declare</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-depmod.html">depmod</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dmesg.html">dmesg</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-enable.html">enable</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-eval.html">eval</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-export.html">export</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pwunconv.html">pwunconv</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-grpconv.html">grpconv</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rpm.html">rpm</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-insmod.html">insmod</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-kbdconfig.html">kbdconfig</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lilo.html">lilo</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-liloconfig.html">liloconfig</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lsmod.html">lsmod</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-minfo.html">minfo</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-set.html">set</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-modprobe.html">modprobe</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ntsysv.html">ntsysv</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mouseconfig.html">mouseconfig</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-passwd.html">passwd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-pwconv.html">pwconv</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rdate.html">rdate</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-resize.html">resize</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rmmod.html">rmmod</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-grpunconv.html">grpunconv</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-modinfo.html">modinfo</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-time.html">time</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-setup.html">setup</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sndconfig.html">sndconfig</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-setenv.html">setenv</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-setconsole.html">setconsole</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-timeconfig.html">timeconfig</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ulimit.html">ulimit</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-unset.html">unset</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chkconfig.html">chkconfig</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-apmd.html">apmd</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-hwclock.html">hwclock</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-mkkickstart.html">mkkickstart</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-fbset.html">fbset</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-unalias.html">unalias</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-svgatextmode.html">SVGATextMode</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-gpasswd.html">gpasswd</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>9、备份压缩</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ar.html">ar</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-bunzip2.html">bunzip2</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-bzip2.html">bzip2</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-bzip2recover.html">bzip2recover</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-gunzip.html">gunzip</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-unarj.html">unarj</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-compress.html">compress</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cpio.html">cpio</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dump.html">dump</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uuencode.html">uuencode</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-gzexe.html">gzexe</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-gzip.html">gzip</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lha.html">lha</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-restore.html">restore</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tar.html">tar</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-uudecode.html">uudecode</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-unzip.html">unzip</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-zip.html">zip</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-zipinfo.html">zipinfo</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>10、设备管理</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-setleds.html">setleds</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-loadkeys.html">loadkeys</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-rdev.html">rdev</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-dumpkeys.html">dumpkeys</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-makedev.html">MAKEDEV</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-poweroff.html">poweroff</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-bc.html">Linux bc 命令</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tail.html">Linux tail 命令</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-head.html">Linux head 命令</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-xargs.html">Linux xargs 命令</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ip.html">Linux ip 命令</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-nohup.html">Linux nohup 命令</a></p>
+<h1 id="扩展文章"><a href="#扩展文章" class="headerlink" title="扩展文章"></a>扩展文章</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/linux-command-full-fight.html">Linux 常用命令全拼</a></p>
+
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2019/02/14/linux-study/" title="Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理" target="_blank" rel="external">
+          https://merlinahh.github.io/2019/02/14/linux-study/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+  
+    <div class="panel panel-default panel-badger">
+      <div class="panel-body">
+        <figure class="media">
+          <div class="media-left">
+            <a href="https://github.com/MerlinAhh" target="_blank" class="img-burn thumb-sm">
+              <img src="/images/avatar.jpg"
+                class="img-rounded w-full" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><a href="https://github.com/MerlinAhh" target="_blank"><span class="text-dark">
+                  Merlin
+                </span><small class="ml-1x">
+                  Frontend Developer
+                </small></a></h3>
+            <div>
+              一个前端。
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+    
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/02/14/Linux-install-Nginx/" title="Linux 系统 Nginx 安装与配置"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/07/13/Hexo-GitHub-to-built-a-blog-4/" title="Hexo + GitHub Page 指令"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2022
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>

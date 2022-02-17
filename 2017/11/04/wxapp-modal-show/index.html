@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                小程序_MODAL 模态框弹出提示的几种设置方法 | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="小程序内置 Modal 组件1234567891011wx.showModal(&amp;#123;     title: &amp;#x27;提示&amp;#x27;,                        &#x2F;&#x2F; 定义弹窗标题    content: &amp;#x27;模态弹窗&amp;#x27;,                   &#x2F;&#x2F; 定义弹窗内容文本    success: function (res) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序_MODAL 模态框弹出提示的几种设置方法">
+<meta property="og:url" content="https://merlinahh.github.io/2017/11/04/wxapp-modal-show/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="小程序内置 Modal 组件1234567891011wx.showModal(&amp;#123;     title: &amp;#x27;提示&amp;#x27;,                        &#x2F;&#x2F; 定义弹窗标题    content: &amp;#x27;模态弹窗&amp;#x27;,                   &#x2F;&#x2F; 定义弹窗内容文本    success: function (res) &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-04T12:51:26.000Z">
+<meta property="article:modified_time" content="2022-02-17T00:57:07.996Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="小程序">
+<meta name="twitter:card" content="summary">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2017/11/04/wxapp-modal-show/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.67px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.67px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.67px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.33px;">RegExp</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px;">小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/11/MongoDB-study/" class="title">MongoDB 用法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/05/Linux-install-node-yarn/" class="title">Linux 系统安装及升级 node / yarn</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/Linux-user-sudo/" class="title">Linux 用户管理及用户权限设置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T00:49:41.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/Linux-install-Nginx/" class="title">Linux 系统 Nginx 安装与配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T20:29:14.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/linux-study/" class="title">Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE-Modal-%E7%BB%84%E4%BB%B6"><span class="toc-text">小程序内置 Modal 组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Modal"><span class="toc-text">自定义 Modal</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-wxapp-modal-show" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      小程序_MODAL 模态框弹出提示的几种设置方法
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/11/04/wxapp-modal-show/" class="article-date">
+	  <time datetime="2017-11-04T12:51:26.000Z" itemprop="datePublished">2017-11-04</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </span>
+  
+                    
+	<span class="article-tag">
+		<i class="icon icon-tag"></i>
+		<a class="article-tag-link-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a>
+	</span>
+	
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2017/11/04/wxapp-modal-show/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <h1 id="小程序内置-Modal-组件"><a href="#小程序内置-Modal-组件" class="headerlink" title="小程序内置 Modal 组件"></a>小程序内置 Modal 组件</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wx.showModal(&#123; </span><br><span class="line">    title: &#x27;提示&#x27;,                        // 定义弹窗标题</span><br><span class="line">    content: &#x27;模态弹窗&#x27;,                   // 定义弹窗内容文本</span><br><span class="line">    success: function (res) &#123;</span><br><span class="line">        if (res.confirm) &#123; </span><br><span class="line">            console.log(&#x27;用户点击确定&#x27;)    // 定义弹窗确认按钮</span><br><span class="line">        &#125;else&#123; </span><br><span class="line">            console.log(&#x27;用户点击取消&#x27;)    // 定义弹窗取消按钮</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义-Modal"><a href="#自定义-Modal" class="headerlink" title="自定义 Modal"></a>自定义 Modal</h2><ol>
+<li>Modal 自定义cover-view 用于嵌套在 map/canvas 组件中</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- &lt;map/canvas&gt; --&gt;</span><br><span class="line">&lt;cover-view class=&quot;modal&quot; wx:if=&#x27;&#123;&#123;!modalFlag&#125;&#125;&#x27;&gt;  </span><br><span class="line">    &lt;!-- &lt;cover-view class=&quot;modal&quot; hidden=&quot;&#123;&#123;modalFlag&#125;&#125;&quot;&gt; bug 非块级元素使用hidden不生效 使用 wx:if 可替代 注意: wx:if 与 hidden 判断相反 --&gt;</span><br><span class="line">    &lt;cover-view class=&quot;dew&quot; wx:for=&quot;&#123;&#123;agentList&#125;&#125;&quot; wx:for-item=&quot;seller&quot; wx:if=&quot;&#123;&#123;index &lt; 1&#125;&#125;&quot; wx:key=&quot;seller.name&quot;&gt; </span><br><span class="line">    &lt;cover-image class=&#x27;dew-img&#x27; src=&#x27;&#123;&#123;seller.pimg&#125;&#125;&#x27;&gt;&lt;/cover-image&gt;</span><br><span class="line">    &lt;cover-view class=&quot;vedw&quot;&gt;商家简述: &#123;&#123;seller.des&#125;&#125;&lt;/cover-view&gt;  </span><br><span class="line">    &lt;cover-view class=&quot;po_w&quot;&gt;  </span><br><span class="line">        &lt;cover-view class=&quot;titd&quot;&gt;&#123;&#123;seller.name&#125;&#125;&lt;/cover-view&gt;  </span><br><span class="line">        &lt;cover-view class=&quot;addd&quot;&gt;&#123;&#123;seller.cityName&#125;&#125;&lt;/cover-view&gt;  </span><br><span class="line">    &lt;/cover-view&gt;  </span><br><span class="line">    &lt;/cover-view&gt;  </span><br><span class="line">    &lt;cover-view class=&quot;button cancel&quot; bindtap=&quot;modalhide&quot; &gt;退出&lt;/cover-view&gt;</span><br><span class="line">    &lt;cover-view class=&quot;button confirm&quot; bindtap=&quot;modalshow&quot;&gt;进入商铺&lt;/cover-view&gt;</span><br><span class="line">&lt;/cover-view&gt;</span><br><span class="line">&lt;!-- &lt;/map/canvas&gt; --&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// .wxss</span><br><span class="line">.modal&#123;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">    padding: 40rpx;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">    width: 80%;</span><br><span class="line">    height: auto;</span><br><span class="line">    margin: 12% 10%;</span><br><span class="line">    border-radius: 20rpx;</span><br><span class="line">    border: 1rpx #ccc solid</span><br><span class="line">&#125;</span><br><span class="line">.dew-img&#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%</span><br><span class="line">&#125;</span><br><span class="line">.vedw,.po_w&#123;</span><br><span class="line">    line-height: 160%;</span><br><span class="line">&#125;</span><br><span class="line">.button&#123;</span><br><span class="line">    display: block;</span><br><span class="line">    margin: 20rpx 0 0;</span><br><span class="line">    padding: 20rpx;</span><br><span class="line">    font-size: 30rpx;</span><br><span class="line">    width: 40%;</span><br><span class="line">    color: #fff;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.confirm&#123;</span><br><span class="line">    float: left;</span><br><span class="line">    background-color: rgb(112, 192, 117);</span><br><span class="line">&#125;</span><br><span class="line">.cancel&#123;</span><br><span class="line">    float: right;</span><br><span class="line">    background-color: rgb(186, 0, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// .js</span><br><span class="line">Page(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        modalFlag: false </span><br><span class="line">    &#125;,</span><br><span class="line">    modalshow: function (e) &#123;</span><br><span class="line">        this.setData(&#123;</span><br><span class="line">            modalFlag: false </span><br><span class="line">        &#125;)</span><br><span class="line">        console.log(&quot;进入商铺&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    modalhide: function (e) &#123;</span><br><span class="line">        this.setData(&#123;</span><br><span class="line">            modalFlag: true</span><br><span class="line">        &#125;)</span><br><span class="line">        console.log(&quot;关闭&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Modal 自定义 效果同内置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// .wxml</span><br><span class="line">&lt;modal hidden=&quot;&#123;&#123;hidden&#125;&#125;&quot; title=&quot;&#123;&#123;title&#125;&#125;&quot; confirm-text=&quot;自定义确定按钮&quot; cancel-text=&quot;自定义取消按钮&quot; bindcancel=&quot;cancel&quot; bindconfirm=&quot;confirm&quot; no-cancel=&quot;&#123;&#123;nocancel&#125;&#125;&quot;&gt;</span><br><span class="line">    &#123;&#123;content&#125;&#125;</span><br><span class="line">&lt;/modal&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// .js</span><br><span class="line">Page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        hidden: false,</span><br><span class="line">        nocancel: false,</span><br><span class="line">        title: &quot;这里是title&quot;,</span><br><span class="line">        content: &quot;这是对话框的内容。&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    cancel: function()&#123;</span><br><span class="line">        this.setData(&#123;</span><br><span class="line">            hidden: true</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    confirm: function()&#123;</span><br><span class="line">        this.setData(&#123;</span><br><span class="line">            nocancel: !this.data.nocancel     // 隐藏取消按钮</span><br><span class="line">        &#125;);    </span><br><span class="line">        console.log(&quot;clicked confirm&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>几种混合弹窗效果 ( 提示+模态框+上滑菜单 )</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// .wxml</span><br><span class="line">&lt;span style=&quot;font-family:Comic Sans MS;font-size:18px;color:#333333;&quot;&gt;</span><br><span class="line">    &lt;view class=&quot;container&quot; class=&quot;zn-uploadimg&quot;&gt;  </span><br><span class="line">        &lt;button type=&quot;primary&quot;bindtap=&quot;showok&quot;&gt;消息提示框&lt;/button&gt;   </span><br><span class="line">        &lt;button type=&quot;primary&quot;bindtap=&quot;modalcnt&quot;&gt;模态弹窗&lt;/button&gt;   </span><br><span class="line">        &lt;button type=&quot;primary&quot;bindtap=&quot;actioncnt&quot;&gt;操作菜单&lt;/button&gt;   </span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// .js</span><br><span class="line">//获取应用实例    </span><br><span class="line">var app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">    showok: function () &#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">        title: &#x27;成功&#x27;,</span><br><span class="line">        icon: &#x27;success&#x27;,</span><br><span class="line">        duration: 2000</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    modalcnt: function () &#123;</span><br><span class="line">        wx.showModal(&#123;</span><br><span class="line">        title: &#x27;提示&#x27;,</span><br><span class="line">        content: &#x27;这是一个模态弹窗&#x27;,</span><br><span class="line">        success: function (res) &#123;</span><br><span class="line">            if (res.confirm) &#123;</span><br><span class="line">            console.log(&#x27;用户点击确定&#x27;)</span><br><span class="line">            &#125; else if (res.cancel) &#123;</span><br><span class="line">            console.log(&#x27;用户点击取消&#x27;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    actioncnt: function () &#123;</span><br><span class="line">        wx.showActionSheet(&#123;</span><br><span class="line">        itemList: [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;],</span><br><span class="line">        success: function (res) &#123;</span><br><span class="line">            console.log(res.tapIndex)</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: function (res) &#123;</span><br><span class="line">            console.log(res.errMsg)</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>模拟短信验证 ( modal+输入框 )</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// .wxml</span><br><span class="line">&lt;view class=&quot;container&quot; class=&quot;zn-uploadimg&quot;&gt;  </span><br><span class="line">    &lt;button type=&quot;primary&quot;bindtap=&quot;modalinput&quot;&gt;modal有输入框&lt;/button&gt;   </span><br><span class="line">&lt;/view&gt;  </span><br><span class="line">&lt;modal hidden=&quot;&#123;&#123;hiddenmodalput&#125;&#125;&quot; title=&quot;请输入验证码&quot; confirm-text=&quot;提交&quot; cancel-text=&quot;重置&quot; bindcancel=&quot;cancel&quot; bindconfirm=&quot;confirm&quot;&gt;  </span><br><span class="line">    &lt;input type=&#x27;text&#x27;placeholder=&quot;请输入内容&quot; auto-focus/&gt;  </span><br><span class="line">&lt;/modal&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// .js</span><br><span class="line">var app = getApp()    </span><br><span class="line">Page(&#123;  </span><br><span class="line">    data:&#123;  </span><br><span class="line">        hiddenmodalput:true,  </span><br><span class="line">        //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  </span><br><span class="line">    &#125;,  </span><br><span class="line">    //点击按钮痰喘指定的hiddenmodalput弹出框  </span><br><span class="line">    modalinput:function()&#123;  </span><br><span class="line">        this.setData(&#123;  </span><br><span class="line">        hiddenmodalput: !this.data.hiddenmodalput  </span><br><span class="line">        &#125;)  </span><br><span class="line">    &#125;,  </span><br><span class="line">    //取消按钮  </span><br><span class="line">    cancel: function()&#123;  </span><br><span class="line">        this.setData(&#123;  </span><br><span class="line">            hiddenmodalput: true  </span><br><span class="line">        &#125;);  </span><br><span class="line">    &#125;,  </span><br><span class="line">    //确认  </span><br><span class="line">    confirm: function()&#123;  </span><br><span class="line">        this.setData(&#123;  </span><br><span class="line">            hiddenmodalput: true  </span><br><span class="line">        &#125;)  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>一般使用默认组件设置自定义样式，会带给用户更优质的操作体验，性能和美观度方面都是比较良好的~</p>
+
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2017/11/04/wxapp-modal-show/" title="小程序_MODAL 模态框弹出提示的几种设置方法" target="_blank" rel="external">
+          https://merlinahh.github.io/2017/11/04/wxapp-modal-show/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+  
+    <div class="panel panel-default panel-badger">
+      <div class="panel-body">
+        <figure class="media">
+          <div class="media-left">
+            <a href="https://github.com/MerlinAhh" target="_blank" class="img-burn thumb-sm">
+              <img src="/images/avatar.jpg"
+                class="img-rounded w-full" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><a href="https://github.com/MerlinAhh" target="_blank"><span class="text-dark">
+                  Merlin
+                </span><small class="ml-1x">
+                  Frontend Developer
+                </small></a></h3>
+            <div>
+              一个前端。
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+    
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/11/06/wxapp-payment/" title="小程序_微信支付功能"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/11/01/wxapp-toast-show/" title="小程序_TOAST 弹窗提示的几种设置方法"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2022
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>

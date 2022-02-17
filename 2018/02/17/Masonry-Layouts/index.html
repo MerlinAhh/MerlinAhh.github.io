@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                三种方式实现瀑布流图文布局 | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="瀑布流的主流实现方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三种方式实现瀑布流图文布局">
+<meta property="og:url" content="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="瀑布流的主流实现方案">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/1.jpg">
+<meta property="og:image" content="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/2.jpg">
+<meta property="og:image" content="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/4.jpg">
+<meta property="og:image" content="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/3.jpg">
+<meta property="article:published_time" content="2018-02-16T16:49:26.000Z">
+<meta property="article:modified_time" content="2022-02-16T21:02:16.267Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="keywords">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/1.jpg">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.67px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.67px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.67px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.33px;">RegExp</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px;">小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/11/MongoDB-study/" class="title">MongoDB 用法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/05/Linux-install-node-yarn/" class="title">Linux 系统安装及升级 node / yarn</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/Linux-user-sudo/" class="title">Linux 用户管理及用户权限设置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T00:49:41.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/Linux-install-Nginx/" class="title">Linux 系统 Nginx 安装与配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T20:29:14.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/linux-study/" class="title">Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%BA%AF-HTML-CSS-column-%E5%AE%9E%E7%8E%B0"><span class="toc-text">1. 纯 HTML + CSS column 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%94%E7%A4%BA%EF%BC%9A"><span class="toc-text">演示：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E7%BA%AF-HTML-CSS-flex-%E5%AE%9E%E7%8E%B0"><span class="toc-text">2. 纯 HTML + CSS flex 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%94%E7%A4%BA%EF%BC%9A-1"><span class="toc-text">演示：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-js-position-%E5%AE%9E%E7%8E%B0"><span class="toc-text">3. js + position 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%94%E7%A4%BA%EF%BC%9A-2"><span class="toc-text">演示：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-Masonry-Layouts" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      三种方式实现瀑布流图文布局
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/02/17/Masonry-Layouts/" class="article-date">
+	  <time datetime="2018-02-16T16:49:26.000Z" itemprop="datePublished">2018-02-17</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </span>
+  
+                    
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2018/02/17/Masonry-Layouts/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <p>瀑布流又称瀑布流式布局，是比较流行的一种网站页面布局方式，视觉表现为参差不齐的多栏布局，随着页面滚动条向下滚动，这种布局还会不断加载数据块并附加至当前尾部。</p>
+<p>最早采用此布局的网站是Pinterest，逐渐在国内流行开来。</p>
+<p>花瓣、小红书等需要图文混排，且图片尺寸不一的网站，布局都是使用的瀑布流。</p>
+<p><img src="/2018/02/17/Masonry-Layouts/1.jpg" alt="花瓣首页瀑布流"></p>
+<p><strong>瀑布流的优势</strong>：</p>
+<ol>
+<li>不裁剪不拉伸的以原比例完整的展示图片，不同尺寸排布错落有致</li>
+<li>空间使用更加充分，视觉上也让注意力集中在图片上，便于快速获得更多信息</li>
+<li>布局简洁清新，避免页面复杂乱糟糟</li>
+</ol>
+<p>以下介绍瀑布流在前端的三种实现方案</p>
+<h1 id="1-纯-HTML-CSS-column-实现"><a href="#1-纯-HTML-CSS-column-实现" class="headerlink" title="1. 纯 HTML + CSS column 实现"></a>1. 纯 HTML + CSS column 实现</h1><p>column可以指定容器下元素列的宽度和数量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">columns: column-width column-count;</span><br></pre></td></tr></table></figure>
+
+<p>瀑布流用到的属性是：</p>
+<pre><code>column-count：指定列数
+column-gap：列之间的差距
+</code></pre>
+<h2 id="演示："><a href="#演示：" class="headerlink" title="演示："></a>演示：</h2><p><img src="/2018/02/17/Masonry-Layouts/2.jpg" alt="column实现的效果"></p>
+<p>html：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">        &lt;img src=&quot;https://s4.ax1x.com/2022/02/17/H4YZeH.png&quot; /&gt;</span><br><span class="line">        &lt;h3&gt;标题&lt;/h3&gt;</span><br><span class="line">        &lt;p&gt;描述&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>css:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.list &#123;</span><br><span class="line">    columns: 4;</span><br><span class="line">    column-gap: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item &#123;</span><br><span class="line">    width: auto;</span><br><span class="line">    break-inside: avoid;</span><br><span class="line">    margin-bottom: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item img &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此方案布局排布顺序见图，从上至下，从左至右，布局顺序不太理想。但是不需要js，纯 HTML + CSS 实现的。</p>
+<p><a href="http://blog.merlinahh.top/demo/masonry-layouts/column.html" target="_blank">在线demo</a></p>
+<h1 id="2-纯-HTML-CSS-flex-实现"><a href="#2-纯-HTML-CSS-flex-实现" class="headerlink" title="2. 纯 HTML + CSS flex 实现"></a>2. 纯 HTML + CSS flex 实现</h1><p>对父容器设置弹性盒后，因为瀑布流是多行的所以还要flex-wrap设置wrap，并且flex-direction还要设置为column。</p>
+<p>最关键的是<strong>一定要设置一个高度</strong>。</p>
+<h2 id="演示：-1"><a href="#演示：-1" class="headerlink" title="演示："></a>演示：</h2><p><img src="/2018/02/17/Masonry-Layouts/4.jpg" alt="flex实现的瀑布流"></p>
+<p>html:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;img&quot; style=&quot;height:100px&quot;&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;img&quot; style=&quot;height:250px&quot;&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;img&quot; style=&quot;height:120px&quot;&gt;3&lt;/div&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>css:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">.list &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    height: 3800px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.list&gt;.img &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    width: calc(100% / 4 - 20px);</span><br><span class="line">    margin: 10px;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">    background: rgb(193, 193, 193);</span><br><span class="line">    font-size: 40px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    color: rgb(229, 229, 229);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.list&gt;.img:nth-child(4n+1) &#123;</span><br><span class="line">    order: 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.list&gt;.img:nth-child(4n+2) &#123;</span><br><span class="line">    order: 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.list&gt;.img:nth-child(4n+3) &#123;</span><br><span class="line">    order: 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.list&gt;.img:nth-child(4n) &#123;</span><br><span class="line">    order: 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://blog.merlinahh.top/demo/masonry-layouts/flex.html" target="_blank">在线demo</a></p>
+<h1 id="3-js-position-实现"><a href="#3-js-position-实现" class="headerlink" title="3. js + position 实现"></a>3. js + position 实现</h1><p>js实现瀑布流的话，考虑把子元素全部设置成绝对定位。</p>
+<p>然后监听图片加载，如果加载完就把子元素设置其对应的位置，逐个塞到父容器中。</p>
+<p>父容器高度取列表数组的最大值，子元素设置 absolute 通过上一层排列位置及高度，来摆放下一个的 top/left 定位位置</p>
+<h2 id="演示：-2"><a href="#演示：-2" class="headerlink" title="演示："></a>演示：</h2><p><img src="/2018/02/17/Masonry-Layouts/3.jpg" alt="js + position 实现瀑布流"></p>
+<p>html:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;img&quot;&gt;1&lt;/div&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>css:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.list .img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 250px;</span><br><span class="line">    margin: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>js:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">var colCount   // 定义列数</span><br><span class="line">var colHeightArry = []   // 定义列高度数组</span><br><span class="line">var imgWidth = $(&#x27;.list .img&#x27;).outerWidth(true)   // 单张图片的宽度</span><br><span class="line">colCount = parseInt($(&#x27;.list&#x27;).width() / imgWidth)   // 计算出列数</span><br><span class="line">for (var i = 0; i &lt; colCount; i++) &#123;</span><br><span class="line">    colHeightArry[i] = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 当窗口大小重置之后，重新执行</span><br><span class="line">$(window).on(&#x27;resize&#x27;, function () &#123;</span><br><span class="line">    reset()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 当窗口加载完毕，执行瀑布流</span><br><span class="line">$(window).on(&#x27;load&#x27;, function () &#123;</span><br><span class="line">    reset()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 定义reset函数</span><br><span class="line">function reset() &#123;</span><br><span class="line">    var colHeightArry = []</span><br><span class="line">    colCount = parseInt($(&#x27;.list&#x27;).width() / imgWidth)</span><br><span class="line">    for (var i = 0; i &lt; colCount; i++) &#123;</span><br><span class="line">        colHeightArry[i] = 0</span><br><span class="line">    &#125;</span><br><span class="line">    $(&#x27;.list .img&#x27;).each(function () &#123;</span><br><span class="line">        var minValue = colHeightArry[0]</span><br><span class="line">        var minIndex = 0</span><br><span class="line">        for (var i = 0; i &lt; colCount; i++) &#123;</span><br><span class="line">            if (colHeightArry[i] &lt; minValue) &#123;</span><br><span class="line">                minValue = colHeightArry[i]</span><br><span class="line">                minIndex = i</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $(this).css(&#123;</span><br><span class="line">            height: Math.floor(Math.random() * (600 - 100 + 1)) + 100,</span><br><span class="line">            left: minIndex * imgWidth,</span><br><span class="line">            top: minValue</span><br><span class="line">        &#125;)</span><br><span class="line">        colHeightArry[minIndex] += $(this).outerHeight(true)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.merlinahh.top/demo/masonry-layouts/position.html" target="_blank">在线demo</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是瀑布流布局的三种主流方案。</p>
+<p>只使用 css 实现相对简单，性能好，图片自动填充不用考虑图片加载状态。<br>column 的效果无法修改排布顺序，flex 实现的顺序在一定程度上可以改变。</p>
+<p>使用 js 实现，优点是控制灵活，随意扩展，也可以无限加载，不用过多考虑兼容问题，同时可以添加诸多动画来增强用户体验。<br>但是实现相对复杂。图片填充需要考虑图片加载状态，性能逊色于纯css实现。</p>
+
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2018/02/17/Masonry-Layouts/" title="三种方式实现瀑布流图文布局" target="_blank" rel="external">
+          https://merlinahh.github.io/2018/02/17/Masonry-Layouts/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+  
+    <div class="panel panel-default panel-badger">
+      <div class="panel-body">
+        <figure class="media">
+          <div class="media-left">
+            <a href="https://github.com/MerlinAhh" target="_blank" class="img-burn thumb-sm">
+              <img src="/images/avatar.jpg"
+                class="img-rounded w-full" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><a href="https://github.com/MerlinAhh" target="_blank"><span class="text-dark">
+                  Merlin
+                </span><small class="ml-1x">
+                  Frontend Developer
+                </small></a></h3>
+            <div>
+              一个前端。
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+    
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/06/02/wxapp-template/" title="小程序_推送模板消息 TEMPLATE"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/12/11/RegExp-remove-space/" title="RegExp remove space"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2022
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>

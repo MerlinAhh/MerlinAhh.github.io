@@ -1,0 +1,91 @@
+<!--
+ * @Description: 纯 HTML + CSS flex 实现瀑布流
+ * @Autor: meiling
+ * @Date: 2018-02-17 04:29:06
+ * @LastEditors: meiling
+ * @LastEditTime: 2022-02-17 04:41:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯 HTML + CSS flex 实现瀑布流</title>
+    <style>
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            height: 3800px;
+        }
+
+        .list>.img {
+            position: relative;
+            width: calc(100% / 4 - 20px);
+            margin: 10px;
+            box-sizing: border-box;
+            background: rgb(193, 193, 193);
+            font-size: 40px;
+            text-align: center;
+            color: rgb(229, 229, 229);
+        }
+
+        .list>.img:nth-child(4n+1) {
+            order: 1;
+        }
+
+        .list>.img:nth-child(4n+2) {
+            order: 2;
+        }
+
+        .list>.img:nth-child(4n+3) {
+            order: 3;
+        }
+
+        .list>.img:nth-child(4n) {
+            order: 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="list">
+        <div class="img" style="height:100px">1</div>
+        <div class="img" style="height:250px">2</div>
+        <div class="img" style="height:120px">3</div>
+        <div class="img" style="height:300px">4</div>
+        <div class="img" style="height:400px">5</div>
+        <div class="img" style="height:180px">6</div>
+        <div class="img" style="height:600px">7</div>
+        <div class="img" style="height:200px">8</div>
+        <div class="img" style="height:700px">9</div>
+        <div class="img" style="height:400px">10</div>
+        <div class="img" style="height:300px">11</div>
+        <div class="img" style="height:800px">12</div>
+        <div class="img" style="height:600px">13</div>
+        <div class="img" style="height:200px">14</div>
+        <div class="img" style="height:400px">15</div>
+        <div class="img" style="height:600px">16</div>
+        <div class="img" style="height:800px">17</div>
+        <div class="img" style="height:400px">18</div>
+        <div class="img" style="height:500px">19</div>
+        <div class="img" style="height:300px">20</div>
+        <div class="img" style="height:800px">21</div>
+        <div class="img" style="height:900px">22</div>
+        <div class="img" style="height:300px">23</div>
+        <div class="img" style="height:200px">24</div>
+        <div class="img" style="height:400px">25</div>
+        <div class="img" style="height:500px">26</div>
+        <div class="img" style="height:300px">27</div>
+        <div class="img" style="height:700px">28</div>
+        <div class="img" style="height:200px">29</div>
+        <div class="img" style="height:300px">30</div>
+        <div class="img" style="height:100px">31</div>
+        <div class="img" style="height:500px">32</div>
+        <div class="img" style="height:300px">33</div>
+    </div>
+</body>
+
+</html>

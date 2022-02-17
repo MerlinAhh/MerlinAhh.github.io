@@ -1,0 +1,117 @@
+<!--
+ * @Description: 使用 jQuery 优先从左至右，再从上至下的布局
+ * @Autor: meiling
+ * @Date: 2018-02-17 02:21:46
+ * @LastEditors: meiling
+ * @LastEditTime: 2022-02-17 02:54:23
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .list .img {
+            position: absolute;
+            width: 250px;
+            margin: 10px;
+            transition: all .2s;
+            /* 以下 */
+            background: rgb(193, 193, 193);
+            font-size: 40px;
+            text-align: center;
+            padding-top: 100px;
+            color: rgb(229, 229, 229);
+        }
+    </style>
+    <title>使用 jQuery 优先从左至右，再从上至下的布局</title>
+</head>
+
+<body>
+    <div class="list">
+        <div class="img">1</div>
+        <div class="img">2</div>
+        <div class="img">3</div>
+        <div class="img">4</div>
+        <div class="img">5</div>
+        <div class="img">6</div>
+        <div class="img">7</div>
+        <div class="img">8</div>
+        <div class="img">9</div>
+        <div class="img">10</div>
+        <div class="img">11</div>
+        <div class="img">12</div>
+        <div class="img">13</div>
+        <div class="img">14</div>
+        <div class="img">15</div>
+        <div class="img">16</div>
+        <div class="img">17</div>
+        <div class="img">18</div>
+        <div class="img">19</div>
+        <div class="img">20</div>
+        <div class="img">21</div>
+        <div class="img">22</div>
+        <div class="img">23</div>
+        <div class="img">24</div>
+        <div class="img">25</div>
+        <div class="img">26</div>
+        <div class="img">27</div>
+        <div class="img">28</div>
+        <div class="img">29</div>
+        <div class="img">30</div>
+        <div class="img">31</div>
+        <div class="img">32</div>
+        <div class="img">33</div>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+<script>
+
+    var colCount   //定义列数
+    var colHeightArry = []   //定义列高度数组
+    var imgWidth = $('.list .img').outerWidth(true)   //单张图片的宽度
+    colCount = parseInt($('.list').width() / imgWidth)   //计算出列数
+    for (var i = 0; i < colCount; i++) {
+        colHeightArry[i] = 0
+    }
+
+    //当窗口大小重置之后，重新执行
+    $(window).on('resize', function () {
+        reset()
+    })
+
+    //当窗口加载完毕，执行瀑布流
+    $(window).on('load', function () {
+        reset()
+    })
+
+    //定义reset函数
+    function reset() {
+        var colHeightArry = []
+        colCount = parseInt($('.list').width() / imgWidth)
+        for (var i = 0; i < colCount; i++) {
+            colHeightArry[i] = 0
+        }
+        $('.list .img').each(function () {
+            var minValue = colHeightArry[0]
+            var minIndex = 0
+            for (var i = 0; i < colCount; i++) {
+                if (colHeightArry[i] < minValue) {
+                    minValue = colHeightArry[i]
+                    minIndex = i
+                }
+            }
+            $(this).css({
+                height: Math.floor(Math.random() * (600 - 100 + 1)) + 100,
+                left: minIndex * imgWidth,
+                top: minValue
+            })
+            colHeightArry[minIndex] += $(this).outerHeight(true)
+        })
+    }
+
+</script>

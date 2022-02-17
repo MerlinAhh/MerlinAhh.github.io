@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                PC端鼠标及键盘的禁用 | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="禁用右键🈲止鼠标右键点击，禁止选中文本123456789101112131415161718192021222324if (window.Event) document.captureEvents(Event.MOUSEUP); function nocontextmenu()&amp;#123;    event.cancelBubble &#x3D; true    event.returnValue &#x3D; f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PC端鼠标及键盘的禁用">
+<meta property="og:url" content="https://merlinahh.github.io/2017/08/08/Disable-the-mouse-and-keyboard-on-the-browser/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="禁用右键🈲止鼠标右键点击，禁止选中文本123456789101112131415161718192021222324if (window.Event) document.captureEvents(Event.MOUSEUP); function nocontextmenu()&amp;#123;    event.cancelBubble &#x3D; true    event.returnValue &#x3D; f">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-07T23:32:15.000Z">
+<meta property="article:modified_time" content="2022-02-16T23:49:20.522Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2017/08/08/Disable-the-mouse-and-keyboard-on-the-browser/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.67px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.67px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.67px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.33px;">RegExp</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px;">小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/11/MongoDB-study/" class="title">MongoDB 用法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/05/Linux-install-node-yarn/" class="title">Linux 系统安装及升级 node / yarn</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/Linux-user-sudo/" class="title">Linux 用户管理及用户权限设置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T00:49:41.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/Linux-install-Nginx/" class="title">Linux 系统 Nginx 安装与配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T20:29:14.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/linux-study/" class="title">Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%8F%B3%E9%94%AE"><span class="toc-text">禁用右键</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%88%B2%E6%AD%A2%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%EF%BC%8C%E7%A6%81%E6%AD%A2%E9%80%89%E4%B8%AD%E6%96%87%E6%9C%AC"><span class="toc-text">🈲止鼠标右键点击，禁止选中文本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E7%94%A8f12"><span class="toc-text">禁用f12</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E9%80%89%E4%B8%AD"><span class="toc-text">禁止选中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6"><span class="toc-text">禁止复制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E5%AE%A1%E6%9F%A5%E5%85%83%E7%B4%A0"><span class="toc-text">禁止审查元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%A4%A7%E5%85%A8"><span class="toc-text">禁用大全</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-Disable-the-mouse-and-keyboard-on-the-browser" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      PC端鼠标及键盘的禁用
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/08/08/Disable-the-mouse-and-keyboard-on-the-browser/" class="article-date">
+	  <time datetime="2017-08-07T23:32:15.000Z" itemprop="datePublished">2017-08-08</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </span>
+  
+                    
+	<span class="article-tag">
+		<i class="icon icon-tag"></i>
+		<a class="article-tag-link-link" href="/tags/js/" rel="tag">js</a>
+	</span>
+	
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2017/08/08/Disable-the-mouse-and-keyboard-on-the-browser/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 860(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <h1 id="禁用右键"><a href="#禁用右键" class="headerlink" title="禁用右键"></a>禁用右键</h1><h2 id="🈲止鼠标右键点击，禁止选中文本"><a href="#🈲止鼠标右键点击，禁止选中文本" class="headerlink" title="🈲止鼠标右键点击，禁止选中文本"></a>🈲止鼠标右键点击，禁止选中文本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if (window.Event) document.captureEvents(Event.MOUSEUP); </span><br><span class="line"></span><br><span class="line">function nocontextmenu()&#123;</span><br><span class="line">    event.cancelBubble = true</span><br><span class="line">    event.returnValue = false;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function norightclick(e)&#123;</span><br><span class="line">    if (window.Event) &#123;</span><br><span class="line">        if (e.which == 2 || e.which == 3) return false;</span><br><span class="line">    &#125; else if (event.button == 2 || event.button == 3)&#123;</span><br><span class="line">        event.cancelBubble = true</span><br><span class="line">        event.returnValue = false;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">document.oncontextmenu = nocontextmenu;  // for IE5+</span><br><span class="line">document.onmousedown = norightclick;  // for all others</span><br><span class="line"></span><br><span class="line">document.oncontextmenu = function()&#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h1 id="禁用f12"><a href="#禁用f12" class="headerlink" title="禁用f12"></a>禁用f12</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">document.oncontextmenu = function () &#123; return false; &#125;;</span><br><span class="line">document.onkeydown = function () &#123;</span><br><span class="line">    if (window.event &amp;&amp; window.event.keyCode == 123) &#123;</span><br><span class="line">        event.keyCode = 0;</span><br><span class="line">        event.returnValue = false;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">document.onkeydown = function()&#123;</span><br><span class="line"></span><br><span class="line">    if(window.event &amp;&amp; window.event.keyCode == 123) &#123;</span><br><span class="line">        event.keyCode=0;</span><br><span class="line">        event.returnValue=false;</span><br><span class="line">    &#125;</span><br><span class="line">    if(window.event &amp;&amp; window.event.keyCode == 13) &#123;</span><br><span class="line">        window.event.keyCode = 505;</span><br><span class="line">        alert(进入);</span><br><span class="line">    &#125;</span><br><span class="line">    if(window.event &amp;&amp; window.event.keyCode == 8) &#123;</span><br><span class="line">        alert(str+&quot;\n请使用Del键进行字符的删除操作！&quot;);</span><br><span class="line">        window.event.returnValue=false;</span><br><span class="line">        alert(空格);</span><br><span class="line">    &#125;</span><br><span class="line">    if(window.event &amp;&amp; window.event.keyCode == 64)&#123;</span><br><span class="line">        window.event.returnValue=false;</span><br><span class="line">        alert(哈哈)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="禁止选中"><a href="#禁止选中" class="headerlink" title="禁止选中"></a>禁止选中</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">document.onselectstart = function (event)&#123;</span><br><span class="line">    if(window.event)&#123;</span><br><span class="line">        event = window.event;</span><br><span class="line">    &#125;try&#123;</span><br><span class="line">        var the = event.srcElement;</span><br><span class="line">        if (!((the.tagName == &quot;INPUT&quot; &amp;&amp; the.type.toLowerCase() == &quot;text&quot;) || the.tagName == &quot;TEXTAREA&quot;))&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="禁止复制"><a href="#禁止复制" class="headerlink" title="禁止复制"></a>禁止复制</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">document.oncontextmenu = function (event)&#123;</span><br><span class="line">    if(window.event)&#123;</span><br><span class="line">        event = window.event;</span><br><span class="line">    &#125;try&#123;</span><br><span class="line">        var the = event.srcElement;</span><br><span class="line">        if (!((the.tagName == &quot;INPUT&quot; &amp;&amp; the.type.toLowerCase() == &quot;text&quot;) || the.tagName == &quot;TEXTAREA&quot;))&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;catch (e)&#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="禁止审查元素"><a href="#禁止审查元素" class="headerlink" title="禁止审查元素"></a>禁止审查元素</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">jQuery(document).keydown(function(event) &#123;</span><br><span class="line">    var src = (event.srcElement || event.target);</span><br><span class="line">    if (src != null &amp;&amp; src.nodeType == 1) &#123;</span><br><span class="line">        var nodeName = src.nodeName.toLowerCase();</span><br><span class="line">        if (nodeName == &quot;input&quot; || nodeName == &quot;textarea&quot;) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (event.keyCode == 67 &amp;&amp; event.ctrlKey == true) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">jQuery(document).keyup(function(event) &#123;</span><br><span class="line">    var src = (event.srcElement || event.target);</span><br><span class="line">    if (src != null &amp;&amp; src.nodeType == 1) &#123;</span><br><span class="line">        var nodeName = src.nodeName.toLowerCase();</span><br><span class="line">        if (nodeName == &quot;input&quot; || nodeName == &quot;textarea&quot;) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="禁用大全"><a href="#禁用大全" class="headerlink" title="禁用大全"></a>禁用大全</h1><p>keycode 数字对应的按键 (键盘码)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">keycode 8 = BackSpace BackSpace</span><br><span class="line">keycode 9 = Tab Tab</span><br><span class="line">keycode 12 = Clear</span><br><span class="line">keycode 13 = Enter</span><br><span class="line">keycode 16 = Shift_L</span><br><span class="line">keycode 17 = Control_L</span><br><span class="line">keycode 18 = Alt_L</span><br><span class="line">keycode 19 = Pause</span><br><span class="line">keycode 20 = Caps_Lock</span><br><span class="line">keycode 27 = Escape Escape</span><br><span class="line">keycode 32 = space space</span><br><span class="line">keycode 33 = Prior</span><br><span class="line">keycode 34 = Next</span><br><span class="line">keycode 35 = End</span><br><span class="line">keycode 36 = Home</span><br><span class="line">keycode 37 = Left</span><br><span class="line">keycode 38 = Up</span><br><span class="line">keycode 39 = Right</span><br><span class="line">keycode 40 = Down</span><br><span class="line">keycode 41 = Select</span><br><span class="line">keycode 42 = Print</span><br><span class="line">keycode 43 = Execute</span><br><span class="line">keycode 45 = Insert</span><br><span class="line">keycode 46 = Delete</span><br><span class="line">keycode 47 = Help</span><br><span class="line">keycode 48 = 0 equal braceright</span><br><span class="line">keycode 49 = 1 exclam onesuperior</span><br><span class="line">keycode 50 = 2 quotedbl twosuperior</span><br><span class="line">keycode 51 = 3 section threesuperior</span><br><span class="line">keycode 52 = 4 dollar</span><br><span class="line">keycode 53 = 5 percent</span><br><span class="line">keycode 54 = 6 ampersand</span><br><span class="line">keycode 55 = 7 slash braceleft</span><br><span class="line">keycode 56 = 8 parenleft bracketleft</span><br><span class="line">keycode 57 = 9 parenright bracketright</span><br><span class="line">keycode 65 = a A</span><br><span class="line">keycode 66 = b B</span><br><span class="line">keycode 67 = c C</span><br><span class="line">keycode 68 = d D</span><br><span class="line">keycode 69 = e E EuroSign</span><br><span class="line">keycode 70 = f F</span><br><span class="line">keycode 71 = g G</span><br><span class="line">keycode 72 = h H</span><br><span class="line">keycode 73 = i I</span><br><span class="line">keycode 74 = j J</span><br><span class="line">keycode 75 = k K</span><br><span class="line">keycode 76 = l L</span><br><span class="line">keycode 77 = m M mu</span><br><span class="line">keycode 78 = n N</span><br><span class="line">keycode 79 = o O</span><br><span class="line">keycode 80 = p P</span><br><span class="line">keycode 81 = q Q at</span><br><span class="line">keycode 82 = r R</span><br><span class="line">keycode 83 = s S</span><br><span class="line">keycode 84 = t T</span><br><span class="line">keycode 85 = u U</span><br><span class="line">keycode 86 = v V</span><br><span class="line">keycode 87 = w W</span><br><span class="line">keycode 88 = x X</span><br><span class="line">keycode 89 = y Y</span><br><span class="line">keycode 90 = z Z</span><br><span class="line">keycode 96 = KP_0 KP_0</span><br><span class="line">keycode 97 = KP_1 KP_1</span><br><span class="line">keycode 98 = KP_2 KP_2</span><br><span class="line">keycode 99 = KP_3 KP_3</span><br><span class="line">keycode 100 = KP_4 KP_4</span><br><span class="line">keycode 101 = KP_5 KP_5</span><br><span class="line">keycode 102 = KP_6 KP_6</span><br><span class="line">keycode 103 = KP_7 KP_7</span><br><span class="line">keycode 104 = KP_8 KP_8</span><br><span class="line">keycode 105 = KP_9 KP_9</span><br><span class="line">keycode 106 = KP_Multiply KP_Multiply</span><br><span class="line">keycode 107 = KP_Add KP_Add</span><br><span class="line">keycode 108 = KP_Separator KP_Separator</span><br><span class="line">keycode 109 = KP_Subtract KP_Subtract</span><br><span class="line">keycode 110 = KP_Decimal KP_Decimal</span><br><span class="line">keycode 111 = KP_Divide KP_Divide</span><br><span class="line">keycode 112 = F1</span><br><span class="line">keycode 113 = F2</span><br><span class="line">keycode 114 = F3</span><br><span class="line">keycode 115 = F4</span><br><span class="line">keycode 116 = F5</span><br><span class="line">keycode 117 = F6</span><br><span class="line">keycode 118 = F7</span><br><span class="line">keycode 119 = F8</span><br><span class="line">keycode 120 = F9</span><br><span class="line">keycode 121 = F10</span><br><span class="line">keycode 122 = F11</span><br><span class="line">keycode 123 = F12</span><br><span class="line">keycode 124 = F13</span><br><span class="line">keycode 125 = F14</span><br><span class="line">keycode 126 = F15</span><br><span class="line">keycode 127 = F16</span><br><span class="line">keycode 128 = F17</span><br><span class="line">keycode 129 = F18</span><br><span class="line">keycode 130 = F19</span><br><span class="line">keycode 131 = F20</span><br><span class="line">keycode 132 = F21</span><br><span class="line">keycode 133 = F22</span><br><span class="line">keycode 134 = F23</span><br><span class="line">keycode 135 = F24</span><br><span class="line">keycode 136 = Num_Lock</span><br><span class="line">keycode 137 = Scroll_Lock</span><br><span class="line">keycode 187 = acute grave</span><br><span class="line">keycode 188 = comma semicolon</span><br><span class="line">keycode 189 = minus underscore</span><br><span class="line">keycode 190 = period colon</span><br><span class="line">keycode 192 = numbersign apostrophe</span><br><span class="line">keycode 210 = plusminus hyphen macron</span><br><span class="line">keycode 211 =</span><br><span class="line">keycode 212 = copyright registered</span><br><span class="line">keycode 213 = guillemotleft guillemotright</span><br><span class="line">keycode 214 = masculine ordfeminine</span><br><span class="line">keycode 215 = ae AE</span><br><span class="line">keycode 216 = cent yen</span><br><span class="line">keycode 217 = questiondown exclamdown</span><br><span class="line">keycode 218 = onequarter onehalf threequarters</span><br><span class="line">keycode 220 = less greater bar</span><br><span class="line">keycode 221 = plus asterisk asciitilde</span><br><span class="line">keycode 227 = multiply division</span><br><span class="line">keycode 228 = acircumflex Acircumflex</span><br><span class="line">keycode 229 = ecircumflex Ecircumflex</span><br><span class="line">keycode 230 = icircumflex Icircumflex</span><br><span class="line">keycode 231 = ocircumflex Ocircumflex</span><br><span class="line">keycode 232 = ucircumflex Ucircumflex</span><br><span class="line">keycode 233 = ntilde Ntilde</span><br><span class="line">keycode 234 = yacute Yacute</span><br><span class="line">keycode 235 = oslash Ooblique</span><br><span class="line">keycode 236 = aring Aring</span><br><span class="line">keycode 237 = ccedilla Ccedilla</span><br><span class="line">keycode 238 = thorn THORN</span><br><span class="line">keycode 239 = eth ETH</span><br><span class="line">keycode 240 = diaeresis cedilla currency</span><br><span class="line">keycode 241 = agrave Agrave atilde Atilde</span><br><span class="line">keycode 242 = egrave Egrave</span><br><span class="line">keycode 243 = igrave Igrave</span><br><span class="line">keycode 244 = ograve Ograve otilde Otilde</span><br><span class="line">keycode 245 = ugrave Ugrave</span><br><span class="line">keycode 246 = adiaeresis Adiaeresis</span><br><span class="line">keycode 247 = ediaeresis Ediaeresis</span><br><span class="line">keycode 248 = idiaeresis Idiaeresis</span><br><span class="line">keycode 249 = odiaeresis Odiaeresis</span><br><span class="line">keycode 250 = udiaeresis Udiaeresis</span><br><span class="line">keycode 251 = ssharp question backslash</span><br><span class="line">keycode 252 = asciicircum degree</span><br><span class="line">keycode 253 = 3 sterling</span><br><span class="line">keycode 254 = Mode_switch</span><br></pre></td></tr></table></figure>
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2017/08/08/Disable-the-mouse-and-keyboard-on-the-browser/" title="PC端鼠标及键盘的禁用" target="_blank" rel="external">
+          https://merlinahh.github.io/2017/08/08/Disable-the-mouse-and-keyboard-on-the-browser/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+  
+    <div class="panel panel-default panel-badger">
+      <div class="panel-body">
+        <figure class="media">
+          <div class="media-left">
+            <a href="https://github.com/MerlinAhh" target="_blank" class="img-burn thumb-sm">
+              <img src="/images/avatar.jpg"
+                class="img-rounded w-full" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><a href="https://github.com/MerlinAhh" target="_blank"><span class="text-dark">
+                  Merlin
+                </span><small class="ml-1x">
+                  Frontend Developer
+                </small></a></h3>
+            <div>
+              一个前端。
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+    
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/11/01/wxapp-toast-show/" title="小程序_TOAST 弹窗提示的几种设置方法"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/05/01/Some-things-about-browser-display/" title="关于浏览器显示的一些有趣操作~~~"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2022
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>

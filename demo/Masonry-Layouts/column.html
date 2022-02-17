@@ -1,0 +1,134 @@
+<!--
+ * @Description: 纯 HTML + CSS 实现瀑布流 --- columns
+ * @Autor: meiling
+ * @Date: 2018-02-17 02:21:46
+ * @LastEditors: meiling
+ * @LastEditTime: 2018-02-17 02:53:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯 HTML + CSS 实现瀑布流 --- columns</title>
+    <style>
+        .list {
+            columns: 6;
+            column-gap: 10px;
+        }
+
+        .item {
+            width: auto;
+            break-inside: avoid;
+            margin-bottom: 20px;
+        }
+
+        .item .img {
+            width: 100%;
+            /* 以下 */
+            background: rgb(193, 193, 193);
+            font-size: 40px;
+            text-align: center;
+            padding-top: 50%;
+            color: rgb(229, 229, 229);
+        }
+
+        .item h3 {
+            margin: 10px 0;
+        }
+
+        .item p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="list">
+        <div class="item">
+            <div class="img" style="height: 30vh">1</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 50vh">2</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 60vh">3</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 40vh">4</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 10vh">5</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 70vh">6</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 60vh">7</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 80vh">8</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+
+        <div class="item">
+            <div class="img" style="height: 30vh">9</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 50vh">10</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 20vh">11</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 60vh">12</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 30vh">13</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 60vh">14</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 80vh">15</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+        <div class="item">
+            <div class="img" style="height: 20vh">16</div>
+            <h3>我想要的生活</h3>
+            <p>有时候想，这人间有一户灯火是我亲自点亮的，柴米油盐齐全，瓜果蔬菜新鲜，爱有伴侣，困有暖床，纵然简淡，也心生喜欢。</p>
+        </div>
+    </div>
+</body>
+
+</html>

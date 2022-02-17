@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                MongoDB 用法 | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="安装Windows：https:&#x2F;&#x2F;www.runoob.com&#x2F;mongodb&#x2F;mongodb-window-install.html Mac：https:&#x2F;&#x2F;www.runoob.com&#x2F;mongodb&#x2F;mongodb-osx-install.html Linux：https:&#x2F;&#x2F;www.runoob.com&#x2F;mongodb&#x2F;mongodb-linux-install.html    SQL术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB 用法">
+<meta property="og:url" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="安装Windows：https:&#x2F;&#x2F;www.runoob.com&#x2F;mongodb&#x2F;mongodb-window-install.html Mac：https:&#x2F;&#x2F;www.runoob.com&#x2F;mongodb&#x2F;mongodb-osx-install.html Linux：https:&#x2F;&#x2F;www.runoob.com&#x2F;mongodb&#x2F;mongodb-linux-install.html    SQL术">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/1.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/2.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/3.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/4.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/5.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/6.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/7.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/8.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/9.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/10.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/11.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/12.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/13.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/14.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/15.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/16.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/17.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/18.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/19.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/22.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/23.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/20.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/21.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/24.png">
+<meta property="og:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/25.png">
+<meta property="article:published_time" content="2019-11-11T02:36:54.000Z">
+<meta property="article:modified_time" content="2022-02-16T21:03:13.412Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="MongoDB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://merlinahh.github.io/2019/11/11/MongoDB-study/1.png">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2019/11/11/MongoDB-study/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.67px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.67px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.67px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.33px;">RegExp</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px;">小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/11/MongoDB-study/" class="title">MongoDB 用法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/05/Linux-install-node-yarn/" class="title">Linux 系统安装及升级 node / yarn</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-05T04:50:02.000Z" itemprop="datePublished">2019-03-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/Linux-user-sudo/" class="title">Linux 用户管理及用户权限设置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T00:49:41.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/Linux-install-Nginx/" class="title">Linux 系统 Nginx 安装与配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T20:29:14.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/linux-study/" class="title">Linux 浅尝 —— 网站项目搭建初期知识整理，客户端服务器交互原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-13T17:48:25.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CMongoDB"><span class="toc-text">运行MongoDB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-text">索引</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB-%E8%81%9A%E5%90%88"><span class="toc-text">MongoDB 聚合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">连接数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BF%9E%E6%8E%A5"><span class="toc-text">命令行连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Navicat%E8%BF%9E%E6%8E%A5"><span class="toc-text">Navicat连接</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-MongoDB-study" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      MongoDB 用法
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/11/11/MongoDB-study/" class="article-date">
+	  <time datetime="2019-11-11T02:36:54.000Z" itemprop="datePublished">2019-11-11</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </span>
+  
+                    
+	<span class="article-tag">
+		<i class="icon icon-tag"></i>
+		<a class="article-tag-link-link" href="/tags/MongoDB/" rel="tag">MongoDB</a>
+	</span>
+	
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2019/11/11/MongoDB-study/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2.7k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 10(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Windows：<a target="_blank" rel="noopener" href="https://www.runoob.com/mongodb/mongodb-window-install.html">https://www.runoob.com/mongodb/mongodb-window-install.html</a></p>
+<p>Mac：<a target="_blank" rel="noopener" href="https://www.runoob.com/mongodb/mongodb-osx-install.html">https://www.runoob.com/mongodb/mongodb-osx-install.html</a></p>
+<p>Linux：<a target="_blank" rel="noopener" href="https://www.runoob.com/mongodb/mongodb-linux-install.html">https://www.runoob.com/mongodb/mongodb-linux-install.html</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">SQL术语/概念</th>
+<th align="left">MongoDB术语/概念</th>
+<th align="left">解释/说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">database</td>
+<td align="left">database</td>
+<td align="left">数据库</td>
+</tr>
+<tr>
+<td align="left">table</td>
+<td align="left">collection</td>
+<td align="left">数据库表/集合</td>
+</tr>
+<tr>
+<td align="left">row</td>
+<td align="left">document</td>
+<td align="left">数据记录行/文档</td>
+</tr>
+<tr>
+<td align="left">column</td>
+<td align="left">field</td>
+<td align="left">数据字段/域</td>
+</tr>
+<tr>
+<td align="left">index</td>
+<td align="left">index</td>
+<td align="left">索引</td>
+</tr>
+<tr>
+<td align="left">table joins</td>
+<td align="left"></td>
+<td align="left">表连接,MongoDB不支持</td>
+</tr>
+<tr>
+<td align="left">primary key</td>
+<td align="left">primary key</td>
+<td align="left">主键,MongoDB自动将_id字段设置为主键</td>
+</tr>
+</tbody></table>
+<h1 id="运行MongoDB"><a href="#运行MongoDB" class="headerlink" title="运行MongoDB"></a>运行MongoDB</h1><p>我们可以使用 brew 命令或 mongod 命令来启动服务。</p>
+<p>brew 启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start mongodb-community@4.4</span><br></pre></td></tr></table></figure>
+<p>brew 停止：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services stop mongodb-community@4.4</span><br></pre></td></tr></table></figure>
+<p>mongod 命令后台进程方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config /usr/local/etc/mongod.conf --fork</span><br></pre></td></tr></table></figure>
+<p>这种方式启动要关闭可以进入 mongo shell 控制台来实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.adminCommand(&#123; &quot;shutdown&quot; : 1 &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/11/11/MongoDB-study/1.png"><br><img src="/2019/11/11/MongoDB-study/2.png"></p>
+<ul>
+<li>进入MongoDB安装目录下的bin目录，运行mongo程序</li>
+<li>mongod 命令启动mongodb</li>
+<li>mongo 命令连接</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/3.png"></p>
+<ul>
+<li>执行 <strong>show dbs</strong> 命令查看所有数据</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/4.png"></p>
+<ul>
+<li>执行 <strong>db</strong> 命令可以显示当前数据库对象或集合</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/5.png"></p>
+<ul>
+<li><strong>use</strong>命令可以连接到指定数据库</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/6.png"></p>
+<ul>
+<li>创建集合</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.createCollection(name, options)</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li>name: 要创建的集合名称</li>
+<li>options: 可选参数, 指定有关内存大小及索引的选项</li>
+</ul>
+<p>options 可以是如下参数：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">capped</td>
+<td align="left">布尔</td>
+<td align="left">（可选）如果为 true，则创建固定集合。固定集合是指有着固定大小的集合，当达到最大值时，它会自动覆盖最早的文档。<br><strong>当该值为 true 时，必须指定 size 参数。</strong></td>
+</tr>
+<tr>
+<td align="left">autoIndexId</td>
+<td align="left">布尔</td>
+<td align="left">3.2 之后不再支持该参数。（可选）如为 true，自动在 _id 字段创建索引。默认为 false。</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">数值</td>
+<td align="left">（可选）为固定集合指定一个最大值，即字节数。<br><strong>如果 capped 为 true，也需要指定该字段。</strong></td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="left">数值</td>
+<td align="left">（可选）指定固定集合中包含文档的最大数量。</td>
+</tr>
+</tbody></table>
+<p><img src="/2019/11/11/MongoDB-study/7.png"></p>
+<p><img src="/2019/11/11/MongoDB-study/8.png"></p>
+<p>创建集合并插入数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.insert(&#123;...&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/11/MongoDB-study/9.png"></p>
+<p><img src="/2019/11/11/MongoDB-study/10.png"></p>
+<ul>
+<li>删除数据库下所有集合</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.dropDatabase()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/11/MongoDB-study/11.png"></p>
+<ul>
+<li>删除指定集合</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.drop()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/11/MongoDB-study/12.png"></p>
+<ul>
+<li>插入数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.insert(document) 新增</span><br><span class="line">&gt; db.集合名.save(document) 新增或修改，通过主键_id区分</span><br></pre></td></tr></table></figure>
+<p><strong>添加单条：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.insertOne(document,&#123;</span><br><span class="line">    writeConcern: document</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>添加多条：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.insertMany([document1, document2]</span><br><span class="line">&#123;</span><br><span class="line">    writeConcern: document,</span><br><span class="line">    ordered: boolean</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<p>**document:**要写入的文档。<br>**writeConcern:**写入策略，默认为 1，即要求确认写操作，0 是不要求。<br>**ordered:**指定是否按顺序写入，默认 true，按顺序写入。</p>
+<p><img src="/2019/11/11/MongoDB-study/13.png"></p>
+<p><img src="/2019/11/11/MongoDB-study/14.png"></p>
+<ul>
+<li>更新数据（执行错误）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.update(&lt;query&gt;,&lt;update&gt;,&#123;</span><br><span class="line">        upsert: &lt;boolean&gt;,</span><br><span class="line">        multi: &lt;boolean&gt;,</span><br><span class="line">        writeConcern: &lt;document&gt;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li>**query:**update的查询条件，类似sql update查询内where后面的。</li>
+<li><strong>update:</strong> update的对象和一些更新的操作符（如$,$inc…）等，也可以理解为sql update查询内set后面的</li>
+<li>**upsert:**可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。</li>
+<li>**multi:**可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。</li>
+<li>**writeConcern:**可选，抛出异常的级别。</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/15.png"></p>
+<ul>
+<li>删除数据（执行错误）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.remove(&lt;query&gt;,</span><br><span class="line">    &#123;</span><br><span class="line">        justOne: &lt;boolean&gt;,</span><br><span class="line">        writeConcern: &lt;document&gt;</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&gt; db.集合名.remove(&#123;&#125;)    删除所有数据</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li>**query:**（可选）删除的文档的条件。</li>
+<li>**justOne:**（可选）如果设为 true 或 1，则只删除一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档。</li>
+<li>**writeConcern:**（可选）抛出异常的级别。</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/16.png"></p>
+<ul>
+<li>查询数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.find(query, projection)</span><br><span class="line">&gt; db.集合名.find()   查询所有</span><br><span class="line">&gt; db.集合名.findOne()  查询单条</span><br><span class="line">&gt; db.集合名.find().pretty()   查询数据美化显示</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><strong>query：</strong>可选，使用查询操作符指定查询条件</li>
+<li><strong>projection：</strong>可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。</li>
+</ul>
+<p><img src="/2019/11/11/MongoDB-study/17.png"><br><img src="/2019/11/11/MongoDB-study/18.png"><br><img src="/2019/11/11/MongoDB-study/19.png"></p>
+<p>query参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">格式</th>
+<th align="left">范例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">等于</td>
+<td align="left">{<key>:<value>}</td>
+<td align="left">db.col.find({“name”:”张三三”}).pretty()</td>
+</tr>
+<tr>
+<td align="left">小于</td>
+<td align="left">{<key>:{$lt:<value>}}</td>
+<td align="left">db.col.find({“likes”:{$lt:50}}).pretty()</td>
+</tr>
+<tr>
+<td align="left">小于或等于</td>
+<td align="left">{<key>:{$lte:<value>}}</td>
+<td align="left">db.col.find({“likes”:{$lte:50}}).pretty()</td>
+</tr>
+<tr>
+<td align="left">大于</td>
+<td align="left">{<key>:{$gt:<value>}}</td>
+<td align="left">db.col.find({“likes”:{$gt:50}}).pretty()</td>
+</tr>
+<tr>
+<td align="left">大于或等于</td>
+<td align="left">{<key>:{$gte:<value>}}</td>
+<td align="left">db.col.find({“likes”:{$gte:50}}).pretty()</td>
+</tr>
+<tr>
+<td align="left">不等于</td>
+<td align="left">{<key>:{$ne:<value>}}</td>
+<td align="left">db.col.find({“likes”:{$ne:50}}).pretty()</td>
+</tr>
+</tbody></table>
+<ul>
+<li>多条件AND在query中用逗号分割：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.col.find(&#123;key1:value1, key2:value2&#125;).pretty()</span><br><span class="line">&gt; db.集合名.find(</span><br><span class="line">    &#123;</span><br><span class="line">        $or: [</span><br><span class="line">             &#123;key1: value1&#125;, &#123;key2:value2&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">).pretty()</span><br></pre></td></tr></table></figure>
+<p>$type 通过字段类型查询：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>类型</strong></th>
+<th align="left"><strong>数字</strong></th>
+<th align="left"><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Double</td>
+<td align="left">1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">String</td>
+<td align="left">2</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Object</td>
+<td align="left">3</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Array</td>
+<td align="left">4</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Binary data</td>
+<td align="left">5</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Undefined</td>
+<td align="left">6</td>
+<td align="left">已废弃。</td>
+</tr>
+<tr>
+<td align="left">Object id</td>
+<td align="left">7</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Boolean</td>
+<td align="left">8</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Date</td>
+<td align="left">9</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Null</td>
+<td align="left">10</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Regular Expression</td>
+<td align="left">11</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">JavaScript</td>
+<td align="left">13</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Symbol</td>
+<td align="left">14</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">JavaScript (with scope)</td>
+<td align="left">15</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">32-bit integer</td>
+<td align="left">16</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Timestamp</td>
+<td align="left">17</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">64-bit integer</td>
+<td align="left">18</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Min key</td>
+<td align="left">255</td>
+<td align="left">Query with -1.</td>
+</tr>
+<tr>
+<td align="left">Max key</td>
+<td align="left">127</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>查询name类型为string的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.find(&#123;&quot;name&quot;: &#123;$type: &#x27;string&#x27;&#125;&#125;)</span><br><span class="line">&gt; db.集合名.find(&#123;&quot;name&quot;: &#123;$type: 2&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p>limit()方法固定条数查询：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.find().limit(NUMBER)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/11/MongoDB-study/22.png"><br><img src="/2019/11/11/MongoDB-study/23.png"><br><img src="/2019/11/11/MongoDB-study/20.png"></p>
+<p>skip()方法跳过指定数量查询：</p>
+<ul>
+<li>skip()参数默认0</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.find().limit(NUMBER).skip(NUMBER)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/11/MongoDB-study/21.png"></p>
+<p>sort()方法</p>
+<ul>
+<li><p>KEY：字段名</p>
+</li>
+<li><p>sort()参数-1降序1升序</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.find().sort(&#123;KEY:1&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><ul>
+<li>Key为索引字段，1升序-1降序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.集合名.createIndex(keys, options)</span><br></pre></td></tr></table></figure>
+<p>options参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">background</td>
+<td align="left">Boolean</td>
+<td align="left">建索引过程会阻塞其它数据库操作，background可指定以后台方式创建索引，即增加 “background” 可选参数。 “background” 默认值为<strong>false</strong>。</td>
+</tr>
+<tr>
+<td align="left">unique</td>
+<td align="left">Boolean</td>
+<td align="left">建立的索引是否唯一。指定为true创建唯一索引。默认值为<strong>false</strong>.</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">string</td>
+<td align="left">索引的名称。如果未指定，MongoDB的通过连接索引的字段名和排序顺序生成一个索引名称。</td>
+</tr>
+<tr>
+<td align="left">dropDups</td>
+<td align="left">Boolean</td>
+<td align="left"><strong>3.0+版本已废弃。</strong>在建立唯一索引时是否删除重复记录,指定 true 创建唯一索引。默认值为 <strong>false</strong>.</td>
+</tr>
+<tr>
+<td align="left">sparse</td>
+<td align="left">Boolean</td>
+<td align="left">对文档中不存在的字段数据不启用索引；这个参数需要特别注意，如果设置为true的话，在索引字段中不会查询出不包含对应字段的文档.。默认值为 <strong>false</strong>.</td>
+</tr>
+<tr>
+<td align="left">expireAfterSeconds</td>
+<td align="left">integer</td>
+<td align="left">指定一个以秒为单位的数值，完成 TTL设定，设定集合的生存时间。</td>
+</tr>
+<tr>
+<td align="left">v</td>
+<td align="left">index version</td>
+<td align="left">索引的版本号。默认的索引版本取决于mongod创建索引时运行的版本。</td>
+</tr>
+<tr>
+<td align="left">weights</td>
+<td align="left">document</td>
+<td align="left">索引权重值，数值在 1 到 99,999 之间，表示该索引相对于其他索引字段的得分权重。</td>
+</tr>
+<tr>
+<td align="left">default_language</td>
+<td align="left">string</td>
+<td align="left">对于文本索引，该参数决定了停用词及词干和词器的规则的列表。 默认为英语</td>
+</tr>
+<tr>
+<td align="left">language_override</td>
+<td align="left">string</td>
+<td align="left">对于文本索引，该参数指定了包含在文档中的字段名，语言覆盖默认的language，默认值为 language.</td>
+</tr>
+</tbody></table>
+<h1 id="MongoDB-聚合"><a href="#MongoDB-聚合" class="headerlink" title="MongoDB 聚合"></a>MongoDB 聚合</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/mongodb/mongodb-aggregate.html">https://www.runoob.com/mongodb/mongodb-aggregate.html</a></p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">String</td>
+<td align="left">字符串。存储数据常用的数据类型。在 MongoDB 中，UTF-8 编码的字符串才是合法的。</td>
+</tr>
+<tr>
+<td align="left">Integer</td>
+<td align="left">整型数值。用于存储数值。根据你所采用的服务器，可分为 32 位或 64 位。</td>
+</tr>
+<tr>
+<td align="left">Boolean</td>
+<td align="left">布尔值。用于存储布尔值（真/假）。</td>
+</tr>
+<tr>
+<td align="left">Double</td>
+<td align="left">双精度浮点值。用于存储浮点值。</td>
+</tr>
+<tr>
+<td align="left">Min/Max keys</td>
+<td align="left">将一个值与 BSdrrON（二进制的 JSON）元素的最低值和最高值相对比。</td>
+</tr>
+<tr>
+<td align="left">Array</td>
+<td align="left">用于将数组或列表或多个值存储为一个键。</td>
+</tr>
+<tr>
+<td align="left">Timestamp</td>
+<td align="left">时间戳。记录文档修改或添加的具体时间。</td>
+</tr>
+<tr>
+<td align="left">Object</td>
+<td align="left">用于内嵌文档。</td>
+</tr>
+<tr>
+<td align="left">Null</td>
+<td align="left">用于创建空值。</td>
+</tr>
+<tr>
+<td align="left">Symbol</td>
+<td align="left">符号。该数据类型基本上等同于字符串类型，但不同的是，它一般用于采用特殊符号类型的语言。</td>
+</tr>
+<tr>
+<td align="left">Date</td>
+<td align="left">日期时间。用 UNIX 时间格式来存储当前日期或时间。你可以指定自己的日期时间：创建 Date 对象，传入年月日信息。</td>
+</tr>
+<tr>
+<td align="left">Object ID</td>
+<td align="left">对象 ID。用于创建文档的 ID。</td>
+</tr>
+<tr>
+<td align="left">Binary Data</td>
+<td align="left">二进制数据。用于存储二进制数据。</td>
+</tr>
+<tr>
+<td align="left">Code</td>
+<td align="left">代码类型。用于在文档中存储 JavaScript 代码。</td>
+</tr>
+<tr>
+<td align="left">Regular expression</td>
+<td align="left">正则表达式类型。用于存储正则表达式。</td>
+</tr>
+</tbody></table>
+<h1 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h1><h2 id="命令行连接"><a href="#命令行连接" class="headerlink" title="命令行连接"></a>命令行连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>**mongodb://**这是固定的格式，必须要指定。</li>
+<li><strong>username:password@</strong> 可选项，如果设置，在连接数据库服务器之后，驱动都会尝试登录这个数据库</li>
+<li><strong>host1</strong> 必须的指定至少一个host, host1 是这个URI唯一要填写的。它指定了要连接服务器的地址。如果要连接复制集，请指定多个主机地址。</li>
+<li><strong>portX</strong>可选的指定端口，如果不填，默认为27017</li>
+<li><strong>/database</strong> 如果指定username:password@，连接并验证登录指定数据库。若不指定，默认打开 test 数据库。</li>
+<li><strong>?options</strong> 是连接选项。如果不使用/database，则前面需要加上/。所有连接选项都是键值对name=value，键值对之间通过&amp;或;（分号）隔开</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">replicaSet=name</td>
+<td align="left">验证replica set的名称。 Impliesconnect=replicaSet.</td>
+</tr>
+<tr>
+<td align="left">slaveOk=true|false</td>
+<td align="left"><ul><li>true:在connect=direct模式下，驱动会连接第一台机器，即使这台服务器不是主。在connect=replicaSet模式下，驱动会发送所有的写请求到主并且把读取操作分布在其他从服务器。</li><li>false: 在 connect=direct模式下，驱动会自动找寻主服务器. 在connect=replicaSet 模式下，驱动仅仅连接主服务器，并且所有的读写命令都连接到主服务器。</li></td>
+</tr>
+<tr>
+<td align="left">safe=true|false</td>
+<td align="left"><ul><li>true: 在执行更新操作之后，驱动都会发送getLastError命令来确保更新成功。(还要参考 wtimeoutMS).</li></ul>false: 在每次更新之后，驱动不会发送getLastError来确保更新成功。</td>
+</tr>
+<tr>
+<td align="left">w=n</td>
+<td align="left">驱动添加 { w : n } 到getLastError命令. 应用于safe=true。</td>
+</tr>
+<tr>
+<td align="left">wtimeoutMS=ms</td>
+<td align="left">驱动添加 { wtimeout : ms } 到 getlasterror 命令. 应用于 safe=true.</td>
+</tr>
+<tr>
+<td align="left">fsync=true|false</td>
+<td align="left"><ul><li>true: 驱动添加 { fsync : true } 到 getlasterror 命令.应用于 safe=true.</li><li>false: 驱动不会添加到getLastError命令中。</li></td>
+</tr>
+<tr>
+<td align="left">journal=true|false</td>
+<td align="left">如果设置为 true, 同步到 journal (在提交到数据库前写入到实体中). 应用于 safe=true</td>
+</tr>
+<tr>
+<td align="left">connectTimeoutMS=ms</td>
+<td align="left">可以打开连接的时间。</td>
+</tr>
+<tr>
+<td align="left">socketTimeoutMS=ms</td>
+<td align="left">发送和接受sockets的时间。</td>
+</tr>
+</tbody></table>
+<p>使用用户名密码连接到服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongodb://username:password@hostname/dbname</span><br></pre></td></tr></table></figure>
+<h2 id="Navicat连接"><a href="#Navicat连接" class="headerlink" title="Navicat连接"></a>Navicat连接</h2><p><img src="/2019/11/11/MongoDB-study/24.png"></p>
+<p>执行mongo后会返回一条连接路径</p>
+<p>Navicat创建新连接选择MongoDB使用uri连接，输入上面返回的连接路径</p>
+<p><img src="/2019/11/11/MongoDB-study/25.png"></p>
+<p>测试成功后点保存，即可连接数据库</p>
+
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2019/11/11/MongoDB-study/" title="MongoDB 用法" target="_blank" rel="external">
+          https://merlinahh.github.io/2019/11/11/MongoDB-study/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+  
+    <div class="panel panel-default panel-badger">
+      <div class="panel-body">
+        <figure class="media">
+          <div class="media-left">
+            <a href="https://github.com/MerlinAhh" target="_blank" class="img-burn thumb-sm">
+              <img src="/images/avatar.jpg"
+                class="img-rounded w-full" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><a href="https://github.com/MerlinAhh" target="_blank"><span class="text-dark">
+                  Merlin
+                </span><small class="ml-1x">
+                  Frontend Developer
+                </small></a></h3>
+            <div>
+              一个前端。
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+    
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/03/05/Linux-install-node-yarn/" title="Linux 系统安装及升级 node / yarn"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2022
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>
