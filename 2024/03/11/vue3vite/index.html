@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-transform" />
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no,email=no,adress=no">
+      <!-- Color theme for statusbar -->
+      <meta name="theme-color" content="#000000" />
+      <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+      <meta http-equiv="window-target" content="_top" />
+      
+          
+            <title>
+              
+                Vue3 + Vite 项目搭建 | 
+                    Merlin の 博客
+            </title>
+            <meta name="description" content="vue3 项目搭建教程（基于create-vue，vite，Vite + Vue）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3 + Vite 项目搭建">
+<meta property="og:url" content="https://merlinahh.github.io/2024/03/11/vue3vite/index.html">
+<meta property="og:site_name" content="Merlinの博客">
+<meta property="og:description" content="vue3 项目搭建教程（基于create-vue，vite，Vite + Vue）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://merlinahh.github.io/2024/03/11/vue3vite/1.png">
+<meta property="article:published_time" content="2024-03-11T05:27:42.000Z">
+<meta property="article:modified_time" content="2025-02-05T09:06:44.169Z">
+<meta property="article:author" content="Merlin">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="VUE">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://merlinahh.github.io/2024/03/11/vue3vite/1.png">
+              <!-- Canonical links -->
+              <link rel="canonical" href="https://merlinahh.github.io/2024/03/11/vue3vite/index.html">
+              
+                <link rel="alternate" href="/atom.xml" title="Merlinの博客" type="application/atom+xml">
+                
+                  
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+                    
+                      
+<link rel="stylesheet" href="/css/style.css">
+
+                        
+<link rel="stylesheet" href="/fonts/iconfont.css">
+
+                          
+                              
+                                  
+                                    <link
+                                      href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css"
+                                      rel="stylesheet">
+                                    
+                                      
+<meta name="generator" content="Hexo 5.4.1"></head>
+    
+
+      <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+        <header class="header" itemscope itemtype="http://schema.org/WPHeader"
+  style="background-image: url(/images/bg.png); background-position: -50px bottom; background-repeat: no-repeat;">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+        
+          <div class="profile-block text-center">
+            <a id="avatar" href="/" target="_blank">
+              <img
+                src="/logo.png"
+                width="200" height="200">
+            </a>
+            <h2 id="name" class="hidden-xs hidden-sm">
+              Merlin の 博客
+            </h2>
+            <h3 id="title" class="hidden-xs hidden-sm hidden-md">
+              Frontend Developer
+            </h3>
+            <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>
+              Wuhan, China
+            </small>
+          </div>
+          
+            <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement"
+      role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+          
+            <li class="menu-item menu-item-home">
+              <a href="/.">
+                
+                  <i class="icon icon-home"></i>
+                  
+                    <span class="menu-title">
+                      首页
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-archives">
+              <a href="/archives">
+                
+                  <i class="icon icon-archives"></i>
+                  
+                    <span class="menu-title">
+                      归档
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-categories">
+              <a href="/categories">
+                
+                  <i class="icon icon-category"></i>
+                  
+                    <span class="menu-title">
+                      分类
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-tags">
+              <a href="/tags">
+                
+                  <i class="icon icon-tag"></i>
+                  
+                    <span class="menu-title">
+                      标签
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-gallery">
+              <a href="/gallery">
+                
+                  <i class="icon icon-gallery"></i>
+                  
+                    <span class="menu-title">
+                      图库
+                    </span>
+              </a>
+            </li>
+            
+          
+            <li class="menu-item menu-item-links">
+              <a href="/links">
+                
+                  <i class="icon icon-frilink"></i>
+                  
+                    <span class="menu-title">
+                      友链
+                    </span>
+              </a>
+            </li>
+            
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+          
+            <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/GitHub-Page/" style="font-size: 13.43px;">GitHub Page</a> <a href="/tags/HEXO/" style="font-size: 13.43px;">HEXO</a> <a href="/tags/HTML-CSS/" style="font-size: 13.14px;">HTML+CSS</a> <a href="/tags/Linux/" style="font-size: 13.57px;">Linux</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/Nginx/" style="font-size: 13px;">Nginx</a> <a href="/tags/Node-js/" style="font-size: 13.29px;">Node.js</a> <a href="/tags/RegExp/" style="font-size: 13.14px;">RegExp</a> <a href="/tags/VUE/" style="font-size: 13.14px;">VUE</a> <a href="/tags/js/" style="font-size: 13.86px;">js</a> <a href="/tags/node/" style="font-size: 13px;">node</a> <a href="/tags/scp/" style="font-size: 13px;">scp</a> <a href="/tags/shell%E8%84%9A%E6%9C%AC/" style="font-size: 13px;">shell脚本</a> <a href="/tags/yarn/" style="font-size: 13px;">yarn</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.14px;">前端</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13.71px;">小程序</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 14px;">笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/02/05/Mac-install-develop/" class="title">Mac 安装配置前端开发环境</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-02-05T02:42:00.000Z" itemprop="datePublished">2025-02-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/03/11/vue3vite/" class="title">Vue3 + Vite 项目搭建</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-03-11T05:27:42.000Z" itemprop="datePublished">2024-03-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/28/nvm-node/" class="title">使用 nvm 来管理 node版本</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-28T00:09:31.000Z" itemprop="datePublished">2022-02-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/17/trsndformTime/" class="title">时间戳转具体日时分秒</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-17T07:26:01.000Z" itemprop="datePublished">2022-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/21/scp-upload-files/" class="title">很好用的 scp 上传文件脚本</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-21T05:11:49.000Z" itemprop="datePublished">2020-07-21</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+              
+                
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Node-%E5%8F%8A-npm-%E7%89%88%E6%9C%AC"><span class="toc-text">一、Node 及 npm 版本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-text">二、创建项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-text">使用脚手架创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-vue-router-%E8%BF%9B%E8%A1%8C%E8%B7%AF%E7%94%B1%E7%AE%A1%E7%90%86"><span class="toc-text">使用 vue-router 进行路由管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-vuex-%E8%BF%9B%E8%A1%8C%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-text">使用 vuex 进行状态管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-axios-%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82"><span class="toc-text">使用 axios 统一管理和处理请求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85"><span class="toc-text">请求封装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-docsify-%E7%BC%96%E5%86%99%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3"><span class="toc-text">使用 docsify 编写项目文档</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+  <main class="main" role="main">
+    <div class="content">
+  <article id="post-vue3vite" class="article article-type-post fancy-article"
+    itemscope itemtype="http://schema.org/BlogPosting">
+    
+      <div class="article-header">
+        
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Vue3 + Vite 项目搭建
+    </h1>
+  
+
+            
+              <div class="article-meta">
+                <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/03/11/vue3vite/" class="article-date">
+	  <time datetime="2024-03-11T05:27:42.000Z" itemprop="datePublished">2024-03-11</time>
+	</a>
+</span>
+                  
+  <span class="article-category">
+    <i class="icon icon-category"></i>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </span>
+  
+                    
+	<span class="article-tag">
+		<i class="icon icon-tag"></i>
+		<a class="article-tag-link-link" href="/tags/Node-js/" rel="tag">Node.js</a>, <a class="article-tag-link-link" href="/tags/VUE/" rel="tag">VUE</a>, <a class="article-tag-link-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a>, <a class="article-tag-link-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+	</span>
+	
+                      
+	<span class="article-read hidden-xs">
+		<i class="icon icon-pageviews" aria-hidden="true"></i>
+		<span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	
+		
+                        <span class="post-comment"><i class="icon icon-comment"></i> <a
+                            href="/2024/03/11/vue3vite/#comments" class="article-comment-link">
+                            评论
+                          </a></span>
+                        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+	
+
+              </div>
+      </div>
+      <div class="article-entry marked-body" itemprop="articleBody">
+        
+                  <h1 id="一、Node-及-npm-版本"><a href="#一、Node-及-npm-版本" class="headerlink" title="一、Node 及 npm 版本"></a>一、Node 及 npm 版本</h1><p>node 版本需要在 <code>^18.0.0 || &gt;=20.0.0</code> 区间 <a href="/2022/02/28/nvm-node/">nvm 管理 node</a></p>
+<ul>
+<li>查看当前版本</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>切换到 <code>20.3.0</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 20.3.0 </span><br></pre></td></tr></table></figure>
+
+<h1 id="二、创建项目"><a href="#二、创建项目" class="headerlink" title="二、创建项目"></a>二、创建项目</h1><h3 id="使用脚手架创建项目"><a href="#使用脚手架创建项目" class="headerlink" title="使用脚手架创建项目"></a>使用脚手架创建项目</h3><p>这个命令会安装和执行 create-vue，它是 Vue 提供的官方脚手架工具。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn create vue@latest</span><br></pre></td></tr></table></figure>
+<p>跟随命令行的提示继续操作，按需求确认是否使用依赖</p>
+<p>执行成功后，进入项目目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd vue3vite/</span><br></pre></td></tr></table></figure>
+<p>得到以下目录结构</p>
+<p><img src="/2024/03/11/vue3vite/1.png"></p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-vue-router-进行路由管理"><a href="#使用-vue-router-进行路由管理" class="headerlink" title="使用 vue-router 进行路由管理"></a>使用 vue-router 进行路由管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue-router</span><br></pre></td></tr></table></figure>
+
+<p>成功后在项目 src 目录下新建 <code>router/index.js</code> 文件, 实现基本功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createRouter, createWebHistory &#125; from &quot;vue-router&quot;;</span><br><span class="line">import Login from &quot;@/views/Login.vue&quot;;</span><br><span class="line">import NotFind404 from &quot;@/views/error/404.vue&quot;;</span><br><span class="line">/**</span><br><span class="line"> * 白名单，不需要权限也可以访问</span><br><span class="line"> */</span><br><span class="line">export const constantRoutes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/login&quot;,</span><br><span class="line">    name: &quot;Login&quot;,</span><br><span class="line">    component: Login,</span><br><span class="line">    meta: &#123; roleId: 0, title: &quot;登录&quot; &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/404&quot;,</span><br><span class="line">    name: &quot;404&quot;,</span><br><span class="line">    component: NotFind404,</span><br><span class="line">    meta: &#123; roleId: 0, title: &quot;404页面不存在&quot; &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const router = createRouter(&#123;</span><br><span class="line">  history: createWebHistory(import.meta.env.BASE_URL),</span><br><span class="line">  routes: constantRoutes,</span><br><span class="line">  // 是否严格匹配路由</span><br><span class="line">  strict: true,</span><br><span class="line">  // 路由跳转完成后，页面滚动行为</span><br><span class="line">  scrollBehavior: () =&gt; (&#123; left: 0, top: 0 &#125;),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default router;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-vuex-进行状态管理"><a href="#使用-vuex-进行状态管理" class="headerlink" title="使用 vuex 进行状态管理"></a>使用 vuex 进行状态管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vuex --dev</span><br></pre></td></tr></table></figure>
+
+<p>成功后在项目 src 目录下新建 <code>store/index.js</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from &quot;vuex&quot;;</span><br><span class="line">import CONFIG from &quot;./module/config&quot;;</span><br><span class="line"></span><br><span class="line">export default createStore(&#123;</span><br><span class="line">  state: &#123;&#125;,</span><br><span class="line">  getters: &#123;&#125;,</span><br><span class="line">  mutations: &#123;&#125;,</span><br><span class="line">  actions: &#123;&#125;,</span><br><span class="line">  modules: &#123;</span><br><span class="line">    CONFIG</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-axios-统一管理和处理请求"><a href="#使用-axios-统一管理和处理请求" class="headerlink" title="使用 axios 统一管理和处理请求"></a>使用 axios 统一管理和处理请求</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add axios</span><br></pre></td></tr></table></figure>
+
+<h4 id="请求封装"><a href="#请求封装" class="headerlink" title="请求封装"></a>请求封装</h4><p>创建 request.js 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">import router from &quot;@/router&quot;;</span><br><span class="line">import &#123; filterUndefined &#125; from &quot;./util&quot;;</span><br><span class="line">import &#123; arrayBufferToJson &#125; from &quot;./download&quot;;</span><br><span class="line">// 开启 mock 时，访问本地</span><br><span class="line">const baseURL = process.env.Mock ? &quot;&quot; : process.env.API_BASE_URL;</span><br><span class="line">const instance = axios.create(&#123;</span><br><span class="line">  baseURL,</span><br><span class="line">  timeout: 6000,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">instance.__proto__ = axios;</span><br><span class="line">instance.interceptors.request.use((config) =&gt; &#123;</span><br><span class="line">  const &#123; params, data &#125; = config;</span><br><span class="line">  config.params = params &amp;&amp; filterUndefined(config.params);</span><br><span class="line">  config.data = data &amp;&amp; filterUndefined(config.data);</span><br><span class="line">  // 填充 token 到 header 头中</span><br><span class="line">  if (localStorage.getItem(&quot;token&quot;))</span><br><span class="line">    config.headers.Authorization = localStorage.getItem(&quot;token&quot;);</span><br><span class="line">  return config;</span><br><span class="line">&#125;);</span><br><span class="line">instance.interceptors.response.use(</span><br><span class="line">  (response) =&gt; &#123;</span><br><span class="line">    let data = response.data;</span><br><span class="line">    if (process.env.NODE_ENV === &quot;mock&quot;)</span><br><span class="line">      response.headers[&quot;content-type&quot;] = &quot;application/json; charset=utf-8&quot;;</span><br><span class="line">    if (response.headers[&quot;content-type&quot;].indexOf(&quot;application/json&quot;) === -1) &#123;</span><br><span class="line">      // 下载文件请求，状态码为200时，直接返回成功</span><br><span class="line">      return Promise.resolve(data);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      switch (data.code) &#123;</span><br><span class="line">        // 请求成功</span><br><span class="line">        case 9100:</span><br><span class="line">          return Promise.resolve(data);</span><br><span class="line">        default:</span><br><span class="line">          // 请求参数错误</span><br><span class="line">          if (data.code === 9200) &#123;</span><br><span class="line">            // 参数错误为联调时期的问题, 不对用户弹窗提示</span><br><span class="line">          &#125;</span><br><span class="line">          // 9250 用户操作出错 9500 系统繁忙 失败提示弹窗</span><br><span class="line">          if (data.code === 9250 || data.code === 9500) &#123;</span><br><span class="line">            // 弹窗提示错误msg</span><br><span class="line">          &#125;</span><br><span class="line">          // 9300 未登录 9400 登录过期 退到登录 弹提示</span><br><span class="line">          if (data.code === 9300 || data.code === 9400) &#123;</span><br><span class="line">            // 弹窗提示msg</span><br><span class="line">            router.push(&#123; name: &quot;Login&quot; &#125;); // 跳转到登录页面</span><br><span class="line">          &#125;</span><br><span class="line">          // 数据不存在或者已删除</span><br><span class="line">          if (data.code === 9404) &#123;</span><br><span class="line">            // 弹窗提示msg</span><br><span class="line">            router.replace(&#123; name: &quot;404&quot; &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">          return Promise.reject(&#123; ...data, msg: data.msg &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) =&gt; &#123;</span><br><span class="line">    const response = error.response;</span><br><span class="line">    let data = null;</span><br><span class="line">    try &#123;</span><br><span class="line">      const err = response.data.result &amp;&amp; response.data.result.error;</span><br><span class="line">      // 登录过期/非法、超时</span><br><span class="line">      if (err === &quot;timeout&quot; || err === &quot;invalid&quot;) &#123;</span><br><span class="line">        // 可以弹窗后执行</span><br><span class="line">        console.log(err);</span><br><span class="line">      &#125;</span><br><span class="line">      // 将请求类型为ArrayBuffer的二进制数据转换成json</span><br><span class="line">      data = arrayBufferToJson(response.data).data;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      // let msg = data &amp;&amp; data.msg;</span><br><span class="line">      // 弹窗 msg 信息</span><br><span class="line">    &#125;</span><br><span class="line">    // 开发模式才在控制台打印</span><br><span class="line">    if (</span><br><span class="line">      process.env.NODE_ENV == &quot;development&quot; ||</span><br><span class="line">      process.env.NODE_ENV === &quot;mock&quot;</span><br><span class="line">    ) &#123;</span><br><span class="line">      console.warn(error);</span><br><span class="line">    &#125;</span><br><span class="line">    return Promise.reject(response.data);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line">/**</span><br><span class="line"> * 执行并发请求</span><br><span class="line"> * @param &#123;Array&#125; request 请求方法</span><br><span class="line"> * @param &#123;Array&#125; cbs 请求完成后的回调方法</span><br><span class="line"> * @return &#123;Promise&#125;</span><br><span class="line"> */</span><br><span class="line">function all(request, cbs) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    instance</span><br><span class="line">      .all(request)</span><br><span class="line">      .then(</span><br><span class="line">        instance.spread(function () &#123;</span><br><span class="line">          let arg = [...arguments];</span><br><span class="line">          if (Array.isArray(cbs)) &#123;</span><br><span class="line">            cbs.forEach((fn, index) =&gt; fn(arg[index]));</span><br><span class="line">          &#125;</span><br><span class="line">          resolve(arg);</span><br><span class="line">        &#125;)</span><br><span class="line">      )</span><br><span class="line">      .catch((err) =&gt; &#123;</span><br><span class="line">        reject(err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">const get = (url, params, config = &#123;&#125;) =&gt;</span><br><span class="line">  instance.get(url, &#123; ...config, params &#125;);</span><br><span class="line">const deletes = (url, params, config = &#123;&#125;) =&gt;</span><br><span class="line">  instance.delete(url, &#123; ...config, params &#125;);</span><br><span class="line">const post = (url, params, config = &#123;&#125;) =&gt; instance.post(url, params, config);</span><br><span class="line">const put = (url, params, config = &#123;&#125;) =&gt; instance.put(url, params, config);</span><br><span class="line">export default &#123;</span><br><span class="line">  get,</span><br><span class="line">  deletes,</span><br><span class="line">  post,</span><br><span class="line">  put,</span><br><span class="line">  all,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="使用-docsify-编写项目文档"><a href="#使用-docsify-编写项目文档" class="headerlink" title="使用 docsify 编写项目文档"></a>使用 docsify 编写项目文档</h3><ul>
+<li>全局安装 docsify</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add docsify</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>项目内安装脚手架</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add docsify-cil</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建文档目录</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docsify init ./docs</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行文档</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docsify serve docs</span><br></pre></td></tr></table></figure>
+
+<p>可以写到 <code>package.json</code> 中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scripts: &#123;</span><br><span class="line">    &quot;doc&quot;: &quot;docsify serve docs&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>具体使用见<a target="_blank" rel="noopener" href="https://docsify.js.org/#/?id=docsify">docsify 文档</a></li>
+</ul>
+
+                    
+      </div>
+      <div class="article-footer">
+        <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+      <li class="post-copyright-link hidden-xs">
+        <strong>本文链接：</strong>
+        <a href="https://merlinahh.github.io/2024/03/11/vue3vite/" title="Vue3 + Vite 项目搭建" target="_blank" rel="external">
+          https://merlinahh.github.io/2024/03/11/vue3vite/
+        </a>
+      </li>
+      
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+            target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+        </li>
+  </ul>
+</blockquote>
+
+  
+    <div class="panel panel-default panel-badger">
+      <div class="panel-body">
+        <figure class="media">
+          <div class="media-left">
+            <a href="https://github.com/MerlinAhh" target="_blank" class="img-burn thumb-sm">
+              <img src="/images/avatar.jpg"
+                class="img-rounded w-full" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><a href="https://github.com/MerlinAhh" target="_blank"><span class="text-dark">
+                  Merlin
+                </span><small class="ml-1x">
+                  Frontend Developer
+                </small></a></h3>
+            <div>
+              一个前端。
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+    
+      </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+      
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2025/02/05/Mac-install-develop/" title="Mac 安装配置前端开发环境"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/02/28/nvm-node/" title="使用 nvm 来管理 node版本"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+    
+  <!-- Modal -->
+  <div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content donate">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <div class="modal-body">
+          <div class="donate-box">
+            <div class="donate-head">
+              <p>
+                感谢您的支持，我会继续努力的!
+              </p>
+            </div>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/alipayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开支付宝扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                <div class="donate-payimg">
+                  <img src="/images/donate/wechatpayimg.png" alt="扫码支持"
+                    title="扫一扫" />
+                </div>
+                <p class="text-muted mv">
+                  扫码打赏，你说多少就多少
+                </p>
+                <p class="text-grey">
+                  打开微信扫一扫，即可进行扫码打赏哦
+                </p>
+              </div>
+            </div>
+            <div class="donate-footer">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                    aria-expanded="true"><i class="icon icon-alipay"></i>
+                    支付宝
+                  </a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay"
+                    aria-expanded="false"><i class="icon icon-wxpay"></i>
+                    微信支付
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+  </main>
+                  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/MerlinAhh" target="_blank" title="Github-Fill" ><i class="icon icon-github-fill"></i></a></li>
+        
+        <li><a href="https://huaban.com/user/merlinahh" target="_blank" title="Huaban" ><i class="icon icon-huaban"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss-Fill" ><i class="icon icon-rss-fill"></i></a></li>
+        
+    </ul>
+
+        <div class="copyright">
+            
+                &copy; 2025
+                    Merlin
+                        
+                            <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+        </div>
+</footer>
+                    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+   
+<script src="/js/application.js"></script>
+
+      
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:merlinahh.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+         
+                  
+                           
+                              
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		
+                                 
+                                    
+                                       
+    
+  <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link';
+    meta = meta.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#vcomments',
+      verify: false,
+      notify: false,
+      appId: '6NTC9mbUIM3jxuA1JvFo91mv-9Nh9j0Va',
+      appKey: 'DBFJJEIgASRXDdtCrKqD65DB',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta: meta,
+      pageSize: '10' || 10,
+      visitor: false
+  });
+  </script>
+       
+
+                                          
+                                             
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+    //利用 FancyBox 实现点击图片放大
+    $(document).ready(function () {
+      $('article img').not('[hidden]').not('.panel-body img').each(function () {
+        var $image = $(this);
+        var imageCaption = $image.attr('alt');
+        var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.length < 1) {
+          var src = this.getAttribute('src');
+          var idx = src.lastIndexOf('?');
+          if (idx != -1) {
+            src = src.substring(0, idx);
+          }
+          $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+        }
+        $imageWrapLink.attr('data-fancybox', 'images');
+        if (imageCaption) {
+          $imageWrapLink.attr('data-caption', imageCaption);
+        }
+      });
+      $().fancybox({
+        selector: '[data-fancybox="images"]',
+        hash: false,
+        loop: false,
+      });
+    });
+  </script>
+  
+                                                
+
+
+                                                   <!-- 监听用户停留页面 -->
+<script type="text/javascript">
+    var normal_title = document.title;
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState == 'hidden') {
+            document.title = '肥来接着看鸭(づ￣ 3￣)づ~~~';
+        } else {
+            document.title = normal_title;
+        }
+    });
+</script><!-- 禁止用户复制+f12 -->
+<script type="text/javascript">
+    // 禁止右键
+    if (window.Event)
+        document.captureEvents(Event.MOUSEUP);
+
+    function nocontextmenu() {
+        event.cancelBubble = true
+        event.returnValue = false;
+        return false;
+    }
+
+    function norightclick(e) {
+        if (window.Event) {
+            if (e.which == 2 || e.which == 3) return false;
+        } else if (event.button == 2 || event.button == 3) {
+            event.cancelBubble = true
+            event.returnValue = false;
+            return false;
+        }
+    }
+    document.oncontextmenu = nocontextmenu;  // for IE5+
+    document.onmousedown = norightclick;  //for all others
+    // 禁止f12
+    document.oncontextmenu = function () { return false; };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
+    // 禁止选中
+    document.onselectstart = function (event) {
+        if (window.event) {
+            event = window.event;
+        } try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+</script>
+      </body>
+
+      </html>
